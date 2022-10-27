@@ -1,0 +1,105 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/bionic64"
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+    v.cpus = 2
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    # Common setup (includes setup for C/C++)
+    apt-get update
+    apt-get upgrade -y
+    apt-get install -y make
+    apt-get install -y emacs
+    apt-get install -y nasm
+    apt-get install -y curl
+    apt-get install -y build-essential
+    apt-get install -y libssl-dev
+    apt-get install -y pkg-config
+    chown -R vagrant:vagrant /vagrant
+    echo "export PATH=/home/vagrant/.local/bin:$PATH >> /home/vagrant/.profile"
+
+    # C/C++
+    add-apt-repository ppa:ubuntu-toolchain-r/test
+    apt-get install -y gcc-10
+    apt-get install -y g++-10
+    update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-10 1
+    update-alternatives --install /usr/bin/g++ g++ /usr/bin/g++-10 1
+    apt-get install -y flex
+    apt-get install -y wget
+
+    # bison 3.8.2
+    wget https://ftp.gnu.org/gnu/bison/bison-3.8.2.tar.gz
+    tar -zxvf bison-3.8.2.tar.gz
+    cd bison-3.8.2
+    ./configure
+    make && make install
+    ln -s /usr/local/bin/bison /usr/bin/bison
+    cd ..
+    rm -rf bison-3.8.2*
+
+    # OCaml
+    apt-get install -y apt-utils
+    apt-get install -y m4
+    apt-get install -y software-properties-common
+    add-apt-repository -y ppa:avsm/ppa
+    apt install -y opam
+
+    # Rust
+    apt-get install -y --no-install-recommends \
+        ca-certificates \
+        gcc \
+        libc6-dev \
+        ; \
+    echo "export RUSTUP_HOME=/usr/local/rustup" >> /home/vagrant/.profile
+    echo "export CARGO_HOME=/usr/local/cargo" >> /home/vagrant/.profile
+    echo "export PATH=/usr/local/cargo/bin:$PATH" >> /home/vagrant/.profile
+    source /home/vagrant/.profile
+    env
+    curl https://sh.rustup.rs -sSf | bash -s -- -y
+
+    rustup --version
+    cargo --version
+    rustc --version
+
+    chmod -R a+w $RUSTUP_HOME $CARGO_HOME;
+
+    # Haskell
+    curl -sSL https://get.haskellstack.org/ | sh -s
+
+    # Java
+    add-apt-repository -y ppa:openjdk-r/ppa
+    apt-get install -y ca-certificates-java
+    apt-get install -y openjdk-17-jdk
+
+  SHELL
+
+  # Rust setup in user mode
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    cargo install cargo-prefetch
+    cargo prefetch
+    cargo install lalrpop
+  SHELL
+
+  # OCaml setup in user mode
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    opam init -y
+    opam install -y ocamlbuild
+    opam install -y menhir
+    opam install -y ocamlfind
+    opam install -y core
+
+    echo "test -r /home/vagrant/.opam/opam-init/init.sh && . /home/vagrant/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true" >> /home/vagrant/.profile
+  SHELL
+
+  # Haskell setup in user mode
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    stack setup --resolver lts-18.14
+    stack install --resolver lts-18.14 unordered-containers pretty-show prettyprinter optparse-applicative uniplate protolude recursion-schemes
+  SHELL
+
+end

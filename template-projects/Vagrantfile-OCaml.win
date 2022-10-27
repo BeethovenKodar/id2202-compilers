@@ -1,0 +1,49 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/bionic64"
+
+  # rsync needed for Windows users
+  config.vm.synced_folder ".", "/vagrant", type: "rsync"
+
+  config.vm.provider "virtualbox" do |v|
+    v.memory = 2048
+    v.cpus = 2
+  end
+
+  config.vm.provision "shell", inline: <<-SHELL
+    # Common setup (includes setup for C/C++)
+    apt-get update
+    apt-get upgrade -y
+    apt-get install -y make
+    apt-get install -y emacs
+    apt-get install -y nasm
+    apt-get install -y curl
+    apt-get install -y build-essential
+    apt-get install -y libssl-dev
+    apt-get install -y pkg-config
+    chown -R vagrant:vagrant /vagrant
+    echo "export PATH=/home/vagrant/.local/bin:$PATH >> /home/vagrant/.profile"
+
+    # OCaml
+    apt-get install -y apt-utils
+    apt-get install -y m4
+    apt-get install -y software-properties-common
+    add-apt-repository -y ppa:avsm/ppa
+    apt install -y opam
+
+  SHELL
+
+  # OCaml setup in user mode
+  config.vm.provision "shell", privileged: false, inline: <<-SHELL
+    opam init -y
+    opam install -y ocamlbuild
+    opam install -y menhir
+    opam install -y ocamlfind
+    opam install -y core
+
+    echo "test -r /home/vagrant/.opam/opam-init/init.sh && . /home/vagrant/.opam/opam-init/init.sh > /dev/null 2> /dev/null || true" >> /home/vagrant/.profile
+  SHELL
+
+end
