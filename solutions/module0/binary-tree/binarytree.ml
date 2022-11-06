@@ -3,7 +3,7 @@ open Printf
 (* binary tree representation *)
 type tree =
  | Node of string * tree * tree
- | Leaf of int (* int? *)
+ | Leaf of int
 
 (* general error function to print detected errors *)
 let exitError msg =
@@ -22,20 +22,20 @@ let rec printPreOrder = function
 
 (* traverse left and print left first, then the node, 
    then right recursively *)
-let rec printPostOrder = function
+let rec printInOrder = function
   | Node(str, l, r) ->
-    printPostOrder l;
+    printInOrder l;
     print_endline ("Node:" ^ str);
-    printPostOrder r
+    printInOrder r
   | Leaf(value) ->
     print_endline ("Leaf:" ^ string_of_int value)
 
 (* traverse left and print left first, then right, then the 
    node recursively *)
-let rec printInOrder = function
+let rec printPostOrder = function
   | Node(str, l, r) ->
-    printInOrder l;
-    printInOrder r;
+    printPostOrder l;
+    printPostOrder r;
     print_endline ("Node:" ^ str)
   | Leaf(value) ->
     print_endline ("Leaf:" ^ string_of_int value)
@@ -75,7 +75,6 @@ let rec depth = function
   | Leaf(_) ->
     1
 
-
 (* parse which operation that is requested *)
 let handleOperation operation tree =
   match operation with
@@ -110,12 +109,12 @@ let rec parseElems args =
       (match (String.split_on_char ':' one) with
       | ("Leaf"::[value]) ->
         ([], Leaf(int_of_string value))
-      | ("Node"::_) | _ ->
-        exitError "Should not place node last in sequence since it requires two children, etc.")
+      | _ ->
+        exitError "Leaf must be last in sequence")
     | (hd::tl) ->
       (match (String.split_on_char ':' hd) with 
       | ("Leaf"::[value]) ->
-        (tl, Leaf(int_of_string value))
+          (tl, Leaf(int_of_string value))
       | ("Node"::[value]) -> 
         (* retrieve value for current node *)
         let (remArgs, value) = parseValue tl value in 
@@ -127,26 +126,44 @@ let rec parseElems args =
       | _ ->
         exitError "Leaf or Node cannot have more than one ':' in the construct, or two leaf values")
 
-(* simple validation function to see if given operation, first 
-   program argument, is valid *)
+let rec print_list = function
+  | [] -> ()
+  | (hd::tl) ->
+    printf "%s\n" hd;
+    print_list tl 
+
+(* append new line to end of acc until EOF *)
+let rec readStdIn seq =
+  try
+    let str = input_line stdin in
+    let splitOnWhiteSpace = String.split_on_char ' ' str in
+    readStdIn (List.append seq splitOnWhiteSpace)
+  with
+  | End_of_file -> seq
+
+(* simple validation function to see if given operation as 
+   program argument is valid *)
 let validateOperation = function
   | "pre-order" | "in-order" | "post-order" | "list" | "size" | "depth" ->
     ()
   | _ ->
-    exitError "Invalid operation selected, must be first program argument"
+    exitError "Invoke with ./binary-tree operation"
 
 (* entry point of the binary tree parser *)
-let binarytree = 
-  match (Array.to_list (Sys.argv)) with
-  | ["./binary-tree"] ->
-    exitError "Invoke with ./binary-tree operation *tree sequence*"
-  | ("./binary-tree"::(op::[])) ->
-    exitError "Invoke with ./binary-tree operation *tree sequence*"
-  | (hd::(op::treeSeq)) ->
+let binarytree =
+  match (Sys.argv) with
+  | [| _ |] ->
+    exitError "No program arguments"
+  | [|"./binary-tree"; op |] ->
     validateOperation op;
+    let treeSeq = readStdIn [] in
+    if List.length treeSeq = 0 then
+      exitError "Must provide tree via stdin";
+
     let (treeSeq, bTree) = parseElems treeSeq in
     if List.length treeSeq > 0 then
       exitError "Nodes cannot proceed leaves";
+    let op = (Array.get (Sys.argv) 1) in
     handleOperation op bTree
-  | _ -> exitError "Impossible? Zero arguments found...?"
-  
+  | _ ->
+    exitError "Invalid program arguments"
