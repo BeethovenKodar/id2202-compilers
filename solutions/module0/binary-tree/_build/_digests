@@ -1,0 +1,5 @@
+"Rule: ocaml: ml -> cmo & cmi (%=binarytree )": "\249\1640 \136\155;q#\230\146\205\2204\193\190"
+"Rule: ocaml dependencies ml (%=binarytree )": "\143`\134c\169\209\209\246\012\001\236(\199\186h|"
+"Rule: ocaml: ml & cmi -> cmx & o (%=binarytree )": "\240\168\021\004nx\178\151\134\230,\193\153\134w\196"
+"Rule: ocaml: cmx* & o* -> native (%=binarytree )": "^-\192\191\183\249+\b`\160\237$\193\202\006\007"
+"Resource: /vagrant/\195\133rskurs 1/ID2202 Compilers and execution environments/id2202-lular/solutions/module0/binary-tree/binarytree.ml": "\138\"\143\ru\025q\\~\191\018\210o\028\020\150"

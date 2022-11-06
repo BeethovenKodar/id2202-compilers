@@ -31,7 +31,7 @@ let rec iterator acc curr n =
       iterator acc (curr+1) n (* was not prime, only look for next *)
 
 (* entry function for returning the n first primes, reverse accumulator *)
-let primes = 
+let prime = 
   try
     if Array.length Sys.argv <> 2 then ( (* program + one argument = 2 *)
       print_endline "Must provide exactly 1 argument";

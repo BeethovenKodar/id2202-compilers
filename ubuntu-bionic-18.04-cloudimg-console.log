@@ -690,4 +690,4 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDBZmR+NGpNRfxRKq4RZTDpwX1tl+LSAfAfPbmQgno/
 -----END SSH HOST KEY KEYS-----
 [   28.460725] cloud-init[1424]: Cloud-init v. 22.3.4-0ubuntu1~18.04.1 running 'modules:final' at Mon, 31 Oct 2022 13:44:40 +0000. Up 27.87 seconds.
 [   28.462373] cloud-init[1424]: Cloud-init v. 22.3.4-0ubuntu1~18.04.1 finished at Mon, 31 Oct 2022 13:44:40 +0000. Datasource DataSourceNoCloud [seed=/dev/sdb][dsmode=net].  Up 28.43 seconds
-
+[45763.579965] watchdog: BUG: soft lockup - CPU
