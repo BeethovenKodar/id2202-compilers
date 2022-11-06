@@ -164,6 +164,7 @@ let binarytree =
     if List.length treeSeq > 0 then
       exitError "Nodes cannot proceed leaves";
     let op = (Array.get (Sys.argv) 1) in
-    handleOperation op bTree
+    handleOperation op bTree;
+    exit 0
   | _ ->
-    exitError "Invalid program arguments"
+    exitError "Invalid program argument"
