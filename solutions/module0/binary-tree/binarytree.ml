@@ -154,7 +154,7 @@ let binarytree =
   match (Sys.argv) with
   | [| _ |] ->
     exitError "No program arguments"
-  | [|"./binary-tree"; op |] ->
+  | [| _ ; _ |] ->
     validateOperation op;
     let treeSeq = readStdIn [] in
     if List.length treeSeq = 0 then
@@ -165,7 +165,6 @@ let binarytree =
       exitError "Nodes cannot proceed leaves";
     let op = (Array.get (Sys.argv) 1) in
     handleOperation op bTree;
-    Stdlib.exit 0
+    exit 0
   | _ ->
-    Array.iter (fun x -> printf "%s\n" x) (Sys.argv);
     exitError "Invalid program argument"
