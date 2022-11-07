@@ -1,10 +1,10 @@
 ### Starting build.
 # Target: binarytree.ml.depends, tags: { extension:ml, file:binarytree.ml, ocaml, ocamldep, quiet }
-/home/vagrant/.opam/default/bin/ocamldep.opt -modules binarytree.ml > binarytree.ml.depends
+/home/vagrant/.opam/default/bin/ocamldep.opt -modules binarytree.ml > binarytree.ml.depends # cached
 # Target: binarytree.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:binarytree.cmo, file:binarytree.ml, implem, ocaml, quiet }
-/home/vagrant/.opam/default/bin/ocamlc.opt -c -o binarytree.cmo binarytree.ml
+/home/vagrant/.opam/default/bin/ocamlc.opt -c -o binarytree.cmo binarytree.ml # cached
 # Target: binarytree.cmx, tags: { compile, extension:cmx, extension:ml, file:binarytree.cmx, file:binarytree.ml, implem, native, ocaml, quiet }
-/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o binarytree.cmx binarytree.ml
+/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o binarytree.cmx binarytree.ml # cached
 # Target: binarytree.native, tags: { dont_link_with, extension:native, file:binarytree.native, link, native, ocaml, program, quiet }
-/home/vagrant/.opam/default/bin/ocamlopt.opt binarytree.cmx -o binarytree.native
+/home/vagrant/.opam/default/bin/ocamlopt.opt binarytree.cmx -o binarytree.native # cached
 # Compilation successful.

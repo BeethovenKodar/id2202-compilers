@@ -154,7 +154,7 @@ let binarytree =
   match (Sys.argv) with
   | [| _ |] ->
     exitError "No program arguments"
-  | [| _ ; _ |] ->
+  | [| _ ; op |] ->
     validateOperation op;
     let treeSeq = readStdIn [] in
     if List.length treeSeq = 0 then
