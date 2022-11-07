@@ -165,6 +165,7 @@ let binarytree =
       exitError "Nodes cannot proceed leaves";
     let op = (Array.get (Sys.argv) 1) in
     handleOperation op bTree;
-    exit 0
+    Stdlib.exit 0
   | _ ->
+    Array.iter (fun x -> printf "%s\n" x) (Sys.argv);
     exitError "Invalid program argument"
