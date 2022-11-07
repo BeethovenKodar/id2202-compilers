@@ -1,5 +1,13 @@
-Node:this text
-Node:why
-Leaf:13
+Node:a
+Node:b
+Node:c
+Node:d
+Leaf:1
+Leaf:2
+Node:e
+Leaf:3
 Leaf:4
-Leaf:8
+Leaf:5
+Node:f
+Leaf:6
+Leaf:7

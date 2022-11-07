@@ -73,7 +73,7 @@ let rec depth = function
   | Node(_, l, r) ->
     1 + (Stdlib.max (depth l) (depth r))
   | Leaf(_) ->
-    1
+    0
 
 (* parse which operation that is requested *)
 let handleOperation operation tree =
