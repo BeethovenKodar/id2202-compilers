@@ -177,7 +177,6 @@ and lex = function
   | ')' -> RParenToken
   | '\n' -> NewLineToken
   | c ->
-    printf "%c" c;
     try 
       let char_as_string = String.make 1 c in
       let num = int_of_string char_as_string in
