@@ -193,7 +193,11 @@ let entry_point =
         exit 0
       else
         let next_2 = read_token stdin in
-        parse_line next_2
+        match next_2 with
+        | EOFToken ->
+          exit 0
+        | _ ->
+          parse_line next_2
     | _ ->
       exit_error 1 "Parsing error: incorrect sequence\n" in
   let next = read_token stdin in
