@@ -40,8 +40,8 @@ let rec printPostOrder = function
   | Leaf(value) ->
     print_endline ("Leaf:" ^ string_of_int value)
 
-(* fold the list of integers and append a comma in between each two *)
-(* first is "hardcoded" *)
+(* fold the list of integers and append a comma in between each two
+   first is "hardcoded" *)
 let pretty list = 
   match list with
   | (hd::tl) ->
@@ -125,12 +125,6 @@ let rec parseElems args =
         (remArgs, Node(value, leftBranch, rightBranch))
       | _ ->
         exitError "Leaf or Node cannot have more than one ':' in the construct, or two leaf values")
-
-let rec print_list = function
-  | [] -> ()
-  | (hd::tl) ->
-    printf "%s\n" hd;
-    print_list tl 
 
 (* append new line to end of acc until EOF *)
 let rec readStdIn seq =
