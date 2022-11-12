@@ -77,7 +77,7 @@ and pretty_print_ast = function
 | ExprDiv(e1, e2) ->
   let (e1_val, e2_val, fmt_str) = str_fmt e1 e2 "/" in
   if e2_val = 0 then
-    exit_error 1 "Runtime error: cannot divide by zero"
+    exit_error 2 "Runtime error: cannot divide by zero"
   else
     (e1_val / e2_val, fmt_str)   
 | ExprNum(value) ->
