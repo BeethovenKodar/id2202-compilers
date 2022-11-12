@@ -1,3 +1,0 @@
-1 + 2 - 3
-
-this line should not be read

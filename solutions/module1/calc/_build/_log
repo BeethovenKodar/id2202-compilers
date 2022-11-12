@@ -1,10 +1,10 @@
 ### Starting build.
 # Target: calc.ml.depends, tags: { extension:ml, file:calc.ml, ocaml, ocamldep, quiet }
-/home/vagrant/.opam/default/bin/ocamldep.opt -modules calc.ml > calc.ml.depends # cached
+/home/vagrant/.opam/default/bin/ocamldep.opt -modules calc.ml > calc.ml.depends
 # Target: calc.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:calc.cmo, file:calc.ml, implem, ocaml, quiet }
-/home/vagrant/.opam/default/bin/ocamlc.opt -c -o calc.cmo calc.ml # cached
+/home/vagrant/.opam/default/bin/ocamlc.opt -c -o calc.cmo calc.ml
 # Target: calc.cmx, tags: { compile, extension:cmx, extension:ml, file:calc.cmx, file:calc.ml, implem, native, ocaml, quiet }
-/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o calc.cmx calc.ml # cached
+/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o calc.cmx calc.ml
 # Target: calc.native, tags: { dont_link_with, extension:native, file:calc.native, link, native, ocaml, program, quiet }
-/home/vagrant/.opam/default/bin/ocamlopt.opt calc.cmx -o calc.native # cached
+/home/vagrant/.opam/default/bin/ocamlopt.opt calc.cmx -o calc.native
 # Compilation successful.

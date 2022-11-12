@@ -177,6 +177,7 @@ and lex = function
   | ')' -> RParenToken
   | '\n' -> NewLineToken
   | c ->
+    printf "%c" c;
     try 
       let char_as_string = String.make 1 c in
       let num = int_of_string char_as_string in
@@ -185,22 +186,26 @@ and lex = function
     | Failure(_) ->
       exit_error 1 ("Lexical error: symbol " ^ (String.make 1 c) ^ " not recognized")
     
-(* read first token and start recursive decent parsing *)
+(* read first token and parse with recursive decent *)
 let entry_point =
   let rec parse_line token =
-    let (next, ast_root) = parse_expr token in
-    match next with
-    | NewLineToken | EOFToken ->
-      let (num_val, fmt_str) = pretty_print_ast ast_root in
-      let () = printf "%s\n= %d\n\n" fmt_str num_val in
-      if next = EOFToken then
+    match token with
+    | EOFToken ->
+      exit 0
+    | NewLineToken ->
+      let next = read_token stdin in
+      if next = EOFToken || next = NewLineToken then
         exit 0
       else
-        let next_2 = read_token stdin in
-        if next_2 = EOFToken then
-          exit 0;
-        parse_line next_2
+        parse_line next
     | _ ->
-      exit_error 1 "Parsing error: incorrect sequence\n" in
+      let (next, ast_root) = parse_expr token in
+      if (next <> EOFToken && next <> NewLineToken) then
+        exit_error 1 "Parsing error: incorrect sequence\n"
+      else
+        let (num_val, fmt_str) = pretty_print_ast ast_root in
+        let () = printf ("%s\n= %d\n\n") fmt_str num_val in
+        let next_2 = read_token stdin in
+        parse_line next_2 in
   let next = read_token stdin in
-    parse_line next
+  parse_line next
