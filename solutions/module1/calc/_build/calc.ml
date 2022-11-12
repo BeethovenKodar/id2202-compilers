@@ -127,8 +127,12 @@ and parse_term_pr token expr =
 (**)
 and parse_factor = function
   | NumToken(num) ->
-    let (next, res_num) = create_num num in
+    if num <> 0 then
+      let (next, res_num) = create_num num in
       (next, ExprNum(res_num))
+    else
+      let next = read_token stdin in
+      (next, ExprNum(num))
   | LParenToken ->
     let next = read_token stdin in
       let (token, expr) = parse_expr next in
@@ -193,11 +197,9 @@ let entry_point =
         exit 0
       else
         let next_2 = read_token stdin in
-        match next_2 with
-        | EOFToken ->
-          exit 0
-        | _ ->
-          parse_line next_2
+        if next_2 = EOFToken then
+          exit 0;
+        parse_line next_2
     | _ ->
       exit_error 1 "Parsing error: incorrect sequence\n" in
   let next = read_token stdin in
