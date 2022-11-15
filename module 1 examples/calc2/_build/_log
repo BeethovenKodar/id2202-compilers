@@ -1,0 +1,4 @@
+### Starting build.
+# Target: calc.ml.depends, tags: { extension:ml, file:calc.ml, ocaml, ocamldep, quiet }
+/home/vagrant/.opam/default/bin/ocamldep.opt -modules calc.ml > calc.ml.depends
+# Compilation unsuccessful.

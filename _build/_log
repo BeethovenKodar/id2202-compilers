@@ -1,0 +1,13 @@
+### Starting build.
+Backtrace:
+                      - Failed to build the target cigrid.native
+                          - Building cigrid.native:
+                              - Building cigrid.cmx:
+                                  - Failed to build all of these:
+                                      - Building cigrid.ml:
+                                          - Failed to build all of these:
+                                              - Building cigrid.mly
+                                              - Building cigrid.mlypack
+                                              - Building cigrid.mll
+                                      - Building cigrid.mlpack
+# Compilation unsuccessful.

@@ -191,7 +191,7 @@ let entry_point =
     match token with
     | EOFToken ->
       exit 0
-    | NewLineToken ->
+    | NewLineToken -> (* two newlines -> exit *)
       let next = read_token stdin in
       if (next = EOFToken || next = NewLineToken) then
         exit 0
@@ -204,6 +204,6 @@ let entry_point =
       else
         let (num_val, fmt_str) = pretty_print_ast ast_root in
         let () = printf ("%s\n= %d\n\n") fmt_str num_val in
-        parse_line next in
+          parse_line next in
   let next = read_token stdin in
-  parse_line next
+    parse_line next

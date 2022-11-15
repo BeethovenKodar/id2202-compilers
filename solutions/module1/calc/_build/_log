@@ -3,8 +3,13 @@
 /home/vagrant/.opam/default/bin/ocamldep.opt -modules calc.ml > calc.ml.depends
 # Target: calc.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:calc.cmo, file:calc.ml, implem, ocaml, quiet }
 /home/vagrant/.opam/default/bin/ocamlc.opt -c -o calc.cmo calc.ml
-# Target: calc.cmx, tags: { compile, extension:cmx, extension:ml, file:calc.cmx, file:calc.ml, implem, native, ocaml, quiet }
-/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o calc.cmx calc.ml
-# Target: calc.native, tags: { dont_link_with, extension:native, file:calc.native, link, native, ocaml, program, quiet }
-/home/vagrant/.opam/default/bin/ocamlopt.opt calc.cmx -o calc.native
-# Compilation successful.
++ /home/vagrant/.opam/default/bin/ocamlc.opt -c -o calc.cmo calc.ml
+File "calc.ml", lines 201-204, characters 32-29:
+201 | ................................begin
+202 |         let next = read_token stdin in
+203 |         if next <> NewLineToken then
+204 |           parse_line next end
+Error: This expression has type unit
+       This is not a function; it cannot be applied.
+Command exited with code 2.
+# Compilation unsuccessful.
