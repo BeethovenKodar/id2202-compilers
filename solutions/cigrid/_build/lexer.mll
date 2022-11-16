@@ -14,6 +14,9 @@ let identifier = ['_''a'-'z''A'-'Z']['_''a'-'z''A'-'Z''0'-'9']*
 let decimal_num = ['0'-'9'] | ['1'-'9']['0'-'9']*
 
 rule token = parse
+                          (* IDENTIFIER *)
+  | identifier as name
+    { IDENT(name) }
                           (* KEYWORDS *)
   | "break"
     { BREAK }
@@ -33,9 +36,6 @@ rule token = parse
     { VOID }
   | "while" 
     { WHILE }
-                          (* IDENTIFIER *)
-  | identifier as name
-    { IDENT(name) }
                           (* ESCAPABLE CHARACTERS *)
   | "\\n"
     { CHAR('\n') }
@@ -83,7 +83,7 @@ rule token = parse
   | "!=" 
     { NEQ }
   | '&' 
-    { BITAND }
+    { BITAND}
   | '|'
     { BITOR }
   | "&&" 

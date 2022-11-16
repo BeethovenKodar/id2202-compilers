@@ -1,5 +1,5 @@
 
-all:
+run:
 	ocamlbuild -use-menhir cigrid.native
 	mv cigrid.native cigrid
 
