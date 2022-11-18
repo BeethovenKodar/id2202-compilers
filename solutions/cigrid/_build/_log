@@ -1,24 +1,4 @@
 ### Starting build.
 # Target: cigrid.ml.depends, tags: { extension:ml, file:cigrid.ml, ocaml, ocamldep, quiet }
 /home/vagrant/.opam/default/bin/ocamldep.opt -modules cigrid.ml > cigrid.ml.depends
-# Target: lexer.mll, tags: { extension:mll, file:lexer.mll, lexer, ocaml, ocamllex, quiet }
-/home/vagrant/.opam/default/bin/ocamllex.opt -q lexer.mll # cached
-# Target: lexer.ml.depends, tags: { extension:ml, file:lexer.ml, ocaml, ocamldep, quiet }
-/home/vagrant/.opam/default/bin/ocamldep.opt -modules lexer.ml > lexer.ml.depends # cached
-# Target: token.ml.depends, tags: { extension:ml, file:token.ml, ocaml, ocamldep, quiet }
-/home/vagrant/.opam/default/bin/ocamldep.opt -modules token.ml > token.ml.depends # cached
-# Target: token.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:token.cmo, file:token.ml, implem, ocaml, quiet }
-/home/vagrant/.opam/default/bin/ocamlc.opt -c -o token.cmo token.ml # cached
-# Target: lexer.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:lexer.cmo, file:lexer.ml, implem, ocaml, quiet }
-/home/vagrant/.opam/default/bin/ocamlc.opt -c -o lexer.cmo lexer.ml # cached
-# Target: cigrid.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:cigrid.cmo, file:cigrid.ml, implem, ocaml, quiet }
-/home/vagrant/.opam/default/bin/ocamlc.opt -c -o cigrid.cmo cigrid.ml
-# Target: token.cmx, tags: { compile, extension:cmx, extension:ml, file:token.cmx, file:token.ml, implem, native, ocaml, quiet }
-/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o token.cmx token.ml # cached
-# Target: lexer.cmx, tags: { compile, extension:cmx, extension:ml, file:lexer.cmx, file:lexer.ml, implem, native, ocaml, quiet }
-/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o lexer.cmx lexer.ml # cached
-# Target: cigrid.cmx, tags: { compile, extension:cmx, extension:ml, file:cigrid.cmx, file:cigrid.ml, implem, native, ocaml, quiet }
-/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o cigrid.cmx cigrid.ml
-# Target: cigrid.native, tags: { dont_link_with, extension:native, file:cigrid.native, link, native, ocaml, program, quiet }
-/home/vagrant/.opam/default/bin/ocamlopt.opt token.cmx lexer.cmx cigrid.cmx -o cigrid.native
-# Compilation successful.
+# Compilation unsuccessful.

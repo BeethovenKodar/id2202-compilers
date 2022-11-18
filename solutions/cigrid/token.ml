@@ -1,14 +1,7 @@
 
 (* comments and whitespace ignored here *)
 type token =
-                          (* IDENTIFIER *)
-  | IDENT of string
-                          (* TYPES *)
-  | DECINT of int
-  | CHAR of char
-  (* | STRING of string *)
-                          (* KEYWORDS *)
-  | BREAK
+  | BREAK                   (* KEYWORDS *)
   (* | DELETE *)
   | ELSE
   | EXTERN
@@ -19,23 +12,26 @@ type token =
   | STRUCT
   | VOID
   | WHILE
-                          (* ALGEBRAIC OPERATORS *)
-  | ADD
+  | ADD                     (* GENERAL CHARACTERS *)
   | SUB
   | MUL
   | DIV
-                          (* GENERAL CHARACTERS *)
+  | IDENT of string         (* IDENTIFIER *)
   | MOD
   | LT
   | GT
   | LTE
   | GTE 
+  | ASSIGN
   | EQ
   | NEQ 
   | BITAND
   | BITOR
   | AND
   | OR
+  | DASH
+  | NOT
+  | TILDE
   | LBRACK
   | RBRACK
   | LPAREN
@@ -44,6 +40,6 @@ type token =
   | RCURLY
   | COMMA
   | SEMICOLON
-                          (* SPECIAL CHARACTERS *)
-  | EOF
-  | EOL
+  | DECINT of int           (* TYPES *)
+  | CHAR of char
+  | EOF                     (* SPECIAL CHARACTER *)
