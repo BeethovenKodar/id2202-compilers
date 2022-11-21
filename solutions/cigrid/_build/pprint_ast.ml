@@ -110,15 +110,15 @@ let rec p_param_l = function
 let p_global = function
   | GFuncDecl(t, id, param_l) ->
     let t_str = p_typ t in
-    let id_str = p_ident id in
+    let id_str = id in
     let param_l_str = p_param_l param_l in
       "GFuncDecl(" ^ t_str ^ ", \"" ^ id_str ^ "\" {" ^ param_l_str ^ "})"
   | GFuncDef(t, id, param_l, stmt) ->
     let t_str = p_typ t in
-    let id_str = p_ident id in
+    let id_str = id in
     let param_l_str = p_param_l param_l in
     let stmt_str = p_stmt stmt in
-      "GFuncDef(" ^ t_str  ^ ", \"" ^ id_str ^ "\" {" ^ param_l_str  ^ "}" ^ stmt_str  ^ ")"
+      "GFuncDef(" ^ t_str  ^ ", \"" ^ id_str ^ "\", " ^ "{" ^ param_l_str ^ "}, " ^ stmt_str  ^ ")"
   (* | GVarDef(...) *)
   (* | GVarDecl(...) *)
     
