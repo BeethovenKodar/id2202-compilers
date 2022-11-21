@@ -196,7 +196,7 @@ let _menhir_action_01 =
 # 197 "parser.ml"
      in
     (
-# 144 "parser.mly"
+# 136 "parser.mly"
                                                                     ( SExpr(ECall(i, e_list)) )
 # 202 "parser.ml"
      : (Ast_types.statement))
@@ -204,7 +204,7 @@ let _menhir_action_01 =
 let _menhir_action_02 =
   fun e e_var ->
     (
-# 145 "parser.mly"
+# 137 "parser.mly"
                                      ( SVarAssign(e_var, e) )
 # 210 "parser.ml"
      : (Ast_types.statement))
@@ -212,7 +212,7 @@ let _menhir_action_02 =
 let _menhir_action_03 =
   fun ident ->
     (
-# 146 "parser.mly"
+# 138 "parser.mly"
                              ( SVarAssign(ident, EBinOp(BopAdd, EVar(ident), EInt(1))) )
 # 218 "parser.ml"
      : (Ast_types.statement))
@@ -220,7 +220,7 @@ let _menhir_action_03 =
 let _menhir_action_04 =
   fun ident ->
     (
-# 147 "parser.mly"
+# 139 "parser.mly"
                              ( SVarAssign(ident, EBinOp(BopSub, EVar(ident), EInt(1))) )
 # 226 "parser.ml"
      : (Ast_types.statement))
@@ -228,7 +228,7 @@ let _menhir_action_04 =
 let _menhir_action_05 =
   fun () ->
     (
-# 86 "parser.mly"
+# 78 "parser.mly"
          ( BopAdd )
 # 234 "parser.ml"
      : (Ast_types.bop))
@@ -236,7 +236,7 @@ let _menhir_action_05 =
 let _menhir_action_06 =
   fun () ->
     (
-# 87 "parser.mly"
+# 79 "parser.mly"
          ( BopSub )
 # 242 "parser.ml"
      : (Ast_types.bop))
@@ -244,7 +244,7 @@ let _menhir_action_06 =
 let _menhir_action_07 =
   fun () ->
     (
-# 88 "parser.mly"
+# 80 "parser.mly"
          ( BopMul )
 # 250 "parser.ml"
      : (Ast_types.bop))
@@ -252,7 +252,7 @@ let _menhir_action_07 =
 let _menhir_action_08 =
   fun () ->
     (
-# 89 "parser.mly"
+# 81 "parser.mly"
          ( BopDiv )
 # 258 "parser.ml"
      : (Ast_types.bop))
@@ -260,7 +260,7 @@ let _menhir_action_08 =
 let _menhir_action_09 =
   fun () ->
     (
-# 90 "parser.mly"
+# 82 "parser.mly"
          ( BopMod )
 # 266 "parser.ml"
      : (Ast_types.bop))
@@ -268,7 +268,7 @@ let _menhir_action_09 =
 let _menhir_action_10 =
   fun () ->
     (
-# 91 "parser.mly"
+# 83 "parser.mly"
         ( BopLt )
 # 274 "parser.ml"
      : (Ast_types.bop))
@@ -276,7 +276,7 @@ let _menhir_action_10 =
 let _menhir_action_11 =
   fun () ->
     (
-# 92 "parser.mly"
+# 84 "parser.mly"
         ( BopGt )
 # 282 "parser.ml"
      : (Ast_types.bop))
@@ -284,7 +284,7 @@ let _menhir_action_11 =
 let _menhir_action_12 =
   fun () ->
     (
-# 93 "parser.mly"
+# 85 "parser.mly"
          ( BopLteq )
 # 290 "parser.ml"
      : (Ast_types.bop))
@@ -292,7 +292,7 @@ let _menhir_action_12 =
 let _menhir_action_13 =
   fun () ->
     (
-# 94 "parser.mly"
+# 86 "parser.mly"
          ( BopGteq )
 # 298 "parser.ml"
      : (Ast_types.bop))
@@ -300,7 +300,7 @@ let _menhir_action_13 =
 let _menhir_action_14 =
   fun () ->
     (
-# 95 "parser.mly"
+# 87 "parser.mly"
        ( BopEqto )
 # 306 "parser.ml"
      : (Ast_types.bop))
@@ -308,7 +308,7 @@ let _menhir_action_14 =
 let _menhir_action_15 =
   fun () ->
     (
-# 96 "parser.mly"
+# 88 "parser.mly"
         ( BopNeq )
 # 314 "parser.ml"
      : (Ast_types.bop))
@@ -316,7 +316,7 @@ let _menhir_action_15 =
 let _menhir_action_16 =
   fun () ->
     (
-# 97 "parser.mly"
+# 89 "parser.mly"
             ( BopBitAnd )
 # 322 "parser.ml"
      : (Ast_types.bop))
@@ -324,7 +324,7 @@ let _menhir_action_16 =
 let _menhir_action_17 =
   fun () ->
     (
-# 98 "parser.mly"
+# 90 "parser.mly"
            ( BopBitOr )
 # 330 "parser.ml"
      : (Ast_types.bop))
@@ -332,7 +332,7 @@ let _menhir_action_17 =
 let _menhir_action_18 =
   fun () ->
     (
-# 99 "parser.mly"
+# 91 "parser.mly"
         ( BopAnd )
 # 338 "parser.ml"
      : (Ast_types.bop))
@@ -340,7 +340,7 @@ let _menhir_action_18 =
 let _menhir_action_19 =
   fun () ->
     (
-# 100 "parser.mly"
+# 92 "parser.mly"
        ( BopOr )
 # 346 "parser.ml"
      : (Ast_types.bop))
@@ -348,7 +348,7 @@ let _menhir_action_19 =
 let _menhir_action_20 =
   fun str ->
     (
-# 110 "parser.mly"
+# 102 "parser.mly"
                 ( EVar(str) )
 # 354 "parser.ml"
      : (Ast_types.expression))
@@ -356,7 +356,7 @@ let _menhir_action_20 =
 let _menhir_action_21 =
   fun num ->
     (
-# 111 "parser.mly"
+# 103 "parser.mly"
                  ( EInt(num) )
 # 362 "parser.ml"
      : (Ast_types.expression))
@@ -364,7 +364,7 @@ let _menhir_action_21 =
 let _menhir_action_22 =
   fun c ->
     (
-# 112 "parser.mly"
+# 104 "parser.mly"
              ( EChar(c) )
 # 370 "parser.ml"
      : (Ast_types.expression))
@@ -372,7 +372,7 @@ let _menhir_action_22 =
 let _menhir_action_23 =
   fun bop e1 e2 ->
     (
-# 114 "parser.mly"
+# 106 "parser.mly"
                                       ( EBinOp(bop, e1, e2) )
 # 378 "parser.ml"
      : (Ast_types.expression))
@@ -380,7 +380,7 @@ let _menhir_action_23 =
 let _menhir_action_24 =
   fun e uop ->
     (
-# 115 "parser.mly"
+# 107 "parser.mly"
                          ( EUnOp(uop, e) )
 # 386 "parser.ml"
      : (Ast_types.expression))
@@ -393,7 +393,7 @@ let _menhir_action_25 =
 # 394 "parser.ml"
      in
     (
-# 117 "parser.mly"
+# 109 "parser.mly"
                                                                     ( ECall(i, e_list) )
 # 399 "parser.ml"
      : (Ast_types.expression))
@@ -401,7 +401,7 @@ let _menhir_action_25 =
 let _menhir_action_26 =
   fun e ->
     (
-# 120 "parser.mly"
+# 112 "parser.mly"
                              ( e )
 # 407 "parser.ml"
      : (Ast_types.expression))
@@ -409,7 +409,7 @@ let _menhir_action_26 =
 let _menhir_action_27 =
   fun i p stmt_list t ->
     (
-# 158 "parser.mly"
+# 150 "parser.mly"
     ( GFuncDef(t, i, p, SScope(stmt_list)) )
 # 415 "parser.ml"
      : (Ast_types.g))
@@ -481,7 +481,7 @@ let _menhir_action_35 =
 let _menhir_action_36 =
   fun str ->
     (
-# 140 "parser.mly"
+# 132 "parser.mly"
                 ( str )
 # 487 "parser.ml"
      : (string))
@@ -510,7 +510,7 @@ let _menhir_action_39 =
 # 511 "parser.ml"
      in
     (
-# 154 "parser.mly"
+# 146 "parser.mly"
                                                      ( p_list )
 # 516 "parser.ml"
      : ((Ast_types.t * string) list))
@@ -518,7 +518,7 @@ let _menhir_action_39 =
 let _menhir_action_40 =
   fun ast ->
     (
-# 78 "parser.mly"
+# 70 "parser.mly"
                        ( Prog(ast) )
 # 524 "parser.ml"
      : (Ast_types.p))
@@ -568,7 +568,7 @@ let _menhir_action_44 =
 let _menhir_action_45 =
   fun var_assign ->
     (
-# 123 "parser.mly"
+# 115 "parser.mly"
                                       ( var_assign )
 # 574 "parser.ml"
      : (Ast_types.statement))
@@ -576,7 +576,7 @@ let _menhir_action_45 =
 let _menhir_action_46 =
   fun stmt_list ->
     (
-# 124 "parser.mly"
+# 116 "parser.mly"
                                       ( SScope(stmt_list) )
 # 582 "parser.ml"
      : (Ast_types.statement))
@@ -584,7 +584,7 @@ let _menhir_action_46 =
 let _menhir_action_47 =
   fun e else_s has_else if_s ->
     (
-# 126 "parser.mly"
+# 118 "parser.mly"
     ( SIf(e, if_s, Some else_s) )
 # 590 "parser.ml"
      : (Ast_types.statement))
@@ -592,7 +592,7 @@ let _menhir_action_47 =
 let _menhir_action_48 =
   fun e if_s ->
     (
-# 127 "parser.mly"
+# 119 "parser.mly"
                                               ( SIf(e, if_s, None) )
 # 598 "parser.ml"
      : (Ast_types.statement))
@@ -600,7 +600,7 @@ let _menhir_action_48 =
 let _menhir_action_49 =
   fun e s ->
     (
-# 128 "parser.mly"
+# 120 "parser.mly"
                                               ( SWhile(e, s) )
 # 606 "parser.ml"
      : (Ast_types.statement))
@@ -608,7 +608,7 @@ let _menhir_action_49 =
 let _menhir_action_50 =
   fun () ->
     (
-# 129 "parser.mly"
+# 121 "parser.mly"
                       ( SBreak )
 # 614 "parser.ml"
      : (Ast_types.statement))
@@ -616,7 +616,7 @@ let _menhir_action_50 =
 let _menhir_action_51 =
   fun e ->
     (
-# 131 "parser.mly"
+# 123 "parser.mly"
   ( 
     match e with
     | Some e -> SReturn(Some e)
@@ -628,7 +628,7 @@ let _menhir_action_51 =
 let _menhir_action_52 =
   fun () ->
     (
-# 103 "parser.mly"
+# 95 "parser.mly"
           ( TVoid )
 # 634 "parser.ml"
      : (Ast_types.t))
@@ -636,7 +636,7 @@ let _menhir_action_52 =
 let _menhir_action_53 =
   fun () ->
     (
-# 104 "parser.mly"
+# 96 "parser.mly"
           ( TInt )
 # 642 "parser.ml"
      : (Ast_types.t))
@@ -644,7 +644,7 @@ let _menhir_action_53 =
 let _menhir_action_54 =
   fun () ->
     (
-# 105 "parser.mly"
+# 97 "parser.mly"
           ( TChar )
 # 650 "parser.ml"
      : (Ast_types.t))
@@ -652,7 +652,7 @@ let _menhir_action_54 =
 let _menhir_action_55 =
   fun str ->
     (
-# 106 "parser.mly"
+# 98 "parser.mly"
                 ( TIdent(str) )
 # 658 "parser.ml"
      : (Ast_types.t))
@@ -660,7 +660,7 @@ let _menhir_action_55 =
 let _menhir_action_56 =
   fun () ->
     (
-# 81 "parser.mly"
+# 73 "parser.mly"
          ( UnopNot )
 # 666 "parser.ml"
      : (Ast_types.uop))
@@ -668,7 +668,7 @@ let _menhir_action_56 =
 let _menhir_action_57 =
   fun () ->
     (
-# 82 "parser.mly"
+# 74 "parser.mly"
            ( UnopTilde )
 # 674 "parser.ml"
      : (Ast_types.uop))
@@ -676,7 +676,7 @@ let _menhir_action_57 =
 let _menhir_action_58 =
   fun () ->
     (
-# 83 "parser.mly"
+# 75 "parser.mly"
             ( UnopMinus )
 # 682 "parser.ml"
      : (Ast_types.uop))
@@ -684,7 +684,7 @@ let _menhir_action_58 =
 let _menhir_action_59 =
   fun e i t ->
     (
-# 150 "parser.mly"
+# 142 "parser.mly"
                                          ( SVarDef(t, i, e) )
 # 690 "parser.ml"
      : (Ast_types.statement))
@@ -692,7 +692,7 @@ let _menhir_action_59 =
 let _menhir_action_60 =
   fun a ->
     (
-# 151 "parser.mly"
+# 143 "parser.mly"
                ( a )
 # 698 "parser.ml"
      : (Ast_types.statement))

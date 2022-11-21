@@ -34,6 +34,7 @@ let main =
   | (hd::tl) ->
     let lexbuf = Lexing.from_channel (Stdlib.open_in hd) in
     (* let token_list = get_token_list lexbuf in *)
+    (* Printf.printf "%d" (List.length token_list); *)
     let list_of_ast_globals = 
       try
         Parser.program Lexer.token lexbuf

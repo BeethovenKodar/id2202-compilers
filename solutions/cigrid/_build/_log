@@ -2,15 +2,13 @@
 # Target: cigrid.ml.depends, tags: { extension:ml, file:cigrid.ml, ocaml, ocamldep, quiet }
 /home/vagrant/.opam/default/bin/ocamldep.opt -modules cigrid.ml > cigrid.ml.depends # cached
 # Target: lexer.mll, tags: { extension:mll, file:lexer.mll, lexer, ocaml, ocamllex, quiet }
-/home/vagrant/.opam/default/bin/ocamllex.opt -q lexer.mll # cached
+/home/vagrant/.opam/default/bin/ocamllex.opt -q lexer.mll
 # Target: lexer.ml.depends, tags: { extension:ml, file:lexer.ml, ocaml, ocamldep, quiet }
-/home/vagrant/.opam/default/bin/ocamldep.opt -modules lexer.ml > lexer.ml.depends # cached
+/home/vagrant/.opam/default/bin/ocamldep.opt -modules lexer.ml > lexer.ml.depends
 # Target: token.ml.depends, tags: { extension:ml, file:token.ml, ocaml, ocamldep, quiet }
 /home/vagrant/.opam/default/bin/ocamldep.opt -modules token.ml > token.ml.depends # cached
 # Target: token.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:token.cmo, file:token.ml, implem, ocaml, quiet }
 /home/vagrant/.opam/default/bin/ocamlc.opt -c -o token.cmo token.ml # cached
-# Target: lexer.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:lexer.cmo, file:lexer.ml, implem, ocaml, quiet }
-/home/vagrant/.opam/default/bin/ocamlc.opt -c -o lexer.cmo lexer.ml # cached
 # Target: parser.mly.depends, tags: { extension:mly, file:parser.mly, infer, menhir_ocamldep, ocaml, ocamldep, quiet }
 menhir --external-tokens Token --raw-depend --ocamldep '/home/vagrant/.opam/default/bin/ocamldep.opt -modules' parser.mly > parser.mly.depends # cached
 # Target: ast_types.ml.depends, tags: { extension:ml, file:ast_types.ml, ocaml, ocamldep, quiet }
@@ -24,15 +22,18 @@ menhir --external-tokens Token --ocamlc /home/vagrant/.opam/default/bin/ocamlc.o
 # Target: parser.cmi, tags: { byte, compile, extension:mli, file:parser.mli, interf, ocaml, quiet }
 /home/vagrant/.opam/default/bin/ocamlc.opt -c -o parser.cmi parser.mli # cached
 # Target: pprint_ast.ml.depends, tags: { extension:ml, file:pprint_ast.ml, ocaml, ocamldep, quiet }
-/home/vagrant/.opam/default/bin/ocamldep.opt -modules pprint_ast.ml > pprint_ast.ml.depends
+/home/vagrant/.opam/default/bin/ocamldep.opt -modules pprint_ast.ml > pprint_ast.ml.depends # cached
 # Target: pprint_ast.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:pprint_ast.cmo, file:pprint_ast.ml, implem, ocaml, quiet }
-/home/vagrant/.opam/default/bin/ocamlc.opt -c -o pprint_ast.cmo pprint_ast.ml
+/home/vagrant/.opam/default/bin/ocamlc.opt -c -o pprint_ast.cmo pprint_ast.ml # cached
+# Target: lexer.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:lexer.cmo, file:lexer.ml, implem, ocaml, quiet }
+/home/vagrant/.opam/default/bin/ocamlc.opt -c -o lexer.cmo lexer.ml
++ /home/vagrant/.opam/default/bin/ocamlc.opt -c -o lexer.cmo lexer.ml
+File "lexer.mll", line 62, characters 15-18:
+Warning 26 [unused-var]: unused variable str.
 # Target: cigrid.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:cigrid.cmo, file:cigrid.ml, implem, ocaml, quiet }
 /home/vagrant/.opam/default/bin/ocamlc.opt -c -o cigrid.cmo cigrid.ml
 # Target: token.cmx, tags: { compile, extension:cmx, extension:ml, file:token.cmx, file:token.ml, implem, native, ocaml, quiet }
 /home/vagrant/.opam/default/bin/ocamlopt.opt -c -o token.cmx token.ml # cached
-# Target: lexer.cmx, tags: { compile, extension:cmx, extension:ml, file:lexer.cmx, file:lexer.ml, implem, native, ocaml, quiet }
-/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o lexer.cmx lexer.ml # cached
 # Target: parser.ml.depends, tags: { extension:ml, file:parser.ml, ocaml, ocamldep, quiet }
 /home/vagrant/.opam/default/bin/ocamldep.opt -modules parser.ml > parser.ml.depends # cached
 # Target: ast_types.cmx, tags: { compile, extension:cmx, extension:ml, file:ast_types.cmx, file:ast_types.ml, implem, native, ocaml, quiet }
@@ -40,7 +41,12 @@ menhir --external-tokens Token --ocamlc /home/vagrant/.opam/default/bin/ocamlc.o
 # Target: parser.cmx, tags: { compile, extension:cmx, extension:ml, file:parser.cmx, file:parser.ml, implem, native, ocaml, quiet }
 /home/vagrant/.opam/default/bin/ocamlopt.opt -c -o parser.cmx parser.ml # cached
 # Target: pprint_ast.cmx, tags: { compile, extension:cmx, extension:ml, file:pprint_ast.cmx, file:pprint_ast.ml, implem, native, ocaml, quiet }
-/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o pprint_ast.cmx pprint_ast.ml
+/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o pprint_ast.cmx pprint_ast.ml # cached
+# Target: lexer.cmx, tags: { compile, extension:cmx, extension:ml, file:lexer.cmx, file:lexer.ml, implem, native, ocaml, quiet }
+/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o lexer.cmx lexer.ml
++ /home/vagrant/.opam/default/bin/ocamlopt.opt -c -o lexer.cmx lexer.ml
+File "lexer.mll", line 62, characters 15-18:
+Warning 26 [unused-var]: unused variable str.
 # Target: cigrid.cmx, tags: { compile, extension:cmx, extension:ml, file:cigrid.cmx, file:cigrid.ml, implem, native, ocaml, quiet }
 /home/vagrant/.opam/default/bin/ocamlopt.opt -c -o cigrid.cmx cigrid.ml
 # Target: cigrid.native, tags: { dont_link_with, extension:native, file:cigrid.native, link, native, ocaml, program, quiet }

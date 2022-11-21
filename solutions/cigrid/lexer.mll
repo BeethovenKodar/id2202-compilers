@@ -10,7 +10,7 @@
 
 let whitespace = ' ' | '\n' | '\r'
 let decimal_num = '0' | ['1'-'9']['0'-'9']*
-let allowed_chars = ' ' | '!' | ['#'-'&'] | ['('-'.'] | ['0'-'~']  
+let allowed_chars = ' ' | '!' | ['#'-'&'] | ['('-'.'] | ['/'-'~']  
                         | "\\n" | "\\t" | "\\'" | "\\\"" | "\\\\"
 let comment = "#"[^'\n']*'\n' 
             | "/*"(whitespace | allowed_chars)*"*/" 
@@ -30,35 +30,24 @@ rule token = parse
   | "int" { TINT }
   | "char" { TCHAR }
   | "void" { TVOID }
-  | "++" { ADDSUGAR }
+  | "++" { ADDSUGAR }                   (* NORMAL TOKENS *)
+  | '+' { ADD }                         
   | "--" { SUBSUGAR }
-  | identifier as name { IDENT(name) }  (* IDENTIFIER *)
-  | comment { token lexbuf }            (* IGNORED PATTERNS *) 
-  | whitespace as white
-    { 
-      match white with
-      | '\n' ->
-        let () = Lexing.new_line lexbuf in
-        token lexbuf
-      | '\r' | ' ' | _ ->
-        token lexbuf
-    }
-  | '+' { ADD }                         (* NORMAL TOKENS *)
   | '-' { SUB }
   | '*' { MUL }
   | '/' { DIV }                 
   | '%' { MOD }               
-  | '<' { LT }
-  | '>' { GT }
   | "<=" { LTEQ }
+  | '<' { LT }
   | ">=" { GTEQ }
-  | "="  { ASSIGN }
+  | '>' { GT }
   | "==" { EQ }
+  | "="  { ASSIGN }
   | "!=" { NEQ }
-  | '&' { BITAND }
-  | '|' { BITOR }
   | "&&" { AND }
+  | '&' { BITAND }
   | "||" { OR }
+  | '|' { BITOR }
   | '-' { UMINUS }
   | '!' { NOT }
   | '~' { TILDE }
@@ -70,6 +59,17 @@ rule token = parse
   | '}' { RCURLY }
   | ',' { COMMA }
   | ';' { SEMICOLON }
+  | comment { token lexbuf }            (* IGNORED PATTERNS *) 
+  | whitespace as white
+    { 
+      match white with
+      | '\n' ->
+        let () = Lexing.new_line lexbuf in
+        token lexbuf
+      | '\r' | ' ' | _ ->
+        token lexbuf
+    }
+  | identifier as name { IDENT(name) }  (* IDENTIFIER *)
   | decimal_num as num { DECINT(int_of_string num) }
   | '\''(allowed_chars)'\'' as char 
     {

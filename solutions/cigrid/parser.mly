@@ -57,14 +57,6 @@
 %token <char> CHAR
 %token EOF                    (* SPECIAL CHARACTER *)
 
-%left MUL DIV MOD
-%left ADD SUB
-%left LT GT LTEQ GTEQ
-%left EQ NEQ 
-%left BITAND
-%left BITOR
-%left AND
-%left OR
 // %nonassoc UMINUS
 
 %start program
