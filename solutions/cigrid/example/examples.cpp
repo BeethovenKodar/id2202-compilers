@@ -7,10 +7,10 @@
 #include <stdio.h>
 
 
-extern int putchar(int c);
+// extern int putchar(int c);
 
 
-//Empty function (S)
+// Empty function (S)
 void empty(){
 }
 

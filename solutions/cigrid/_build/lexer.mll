@@ -8,29 +8,30 @@
       exit exit_code
 }
 
+let whitespace = ' ' | '\n' | '\r'
+let decimal_num = '0' | ['1'-'9']['0'-'9']*
 let allowed_chars = ' ' | '!' | ['#'-'&'] | ['('-'.'] | ['0'-'~']  
                         | "\\n" | "\\t" | "\\'" | "\\\"" | "\\\\"
-let whitespace = ' ' | '\n' | '\r'
 let comment = "#"[^'\n']*'\n' 
             | "/*"(whitespace | allowed_chars)*"*/" 
             | "//"[^'\n']*'\n'
 let identifier = ['_''a'-'z''A'-'Z']['_''a'-'z''A'-'Z''0'-'9']*
-let decimal_num = '0' | ['1'-'9']['0'-'9']*
 
 
 rule token = parse
   | "break" { BREAK }                   (* KEYWORDS *)
   | "else" { ELSE }
-  | "extern" { EXTERN }
-  | "for" { FOR }
+  (* | "extern" { EXTERN } *)
+  (* | "for" { FOR } *)
   | "if" { IF }
   | "return" { RETURN }
-  | "struct" { STRUCT }
-  | "void" { VOID }
+  (* | "struct" { STRUCT } *)
   | "while" { WHILE }
   | "int" { TINT }
   | "char" { TCHAR }
   | "void" { TVOID }
+  | "++" { ADDSUGAR }
+  | "--" { SUBSUGAR }
   | identifier as name { IDENT(name) }  (* IDENTIFIER *)
   | comment { token lexbuf }            (* IGNORED PATTERNS *) 
   | whitespace as white
@@ -49,8 +50,8 @@ rule token = parse
   | '%' { MOD }               
   | '<' { LT }
   | '>' { GT }
-  | "<=" { LTE }
-  | ">=" { GTE }
+  | "<=" { LTEQ }
+  | ">=" { GTEQ }
   | "="  { ASSIGN }
   | "==" { EQ }
   | "!=" { NEQ }
@@ -58,18 +59,18 @@ rule token = parse
   | '|' { BITOR }
   | "&&" { AND }
   | "||" { OR }
-  | '-' { DASH }
+  | '-' { UMINUS }
   | '!' { NOT }
   | '~' { TILDE }
-  | '[' { LBRACK }
-  | ']' { RBRACK }
+  (* | '[' { LBRACK } *)
+  (* | ']' { RBRACK } *)
   | '(' { LPAREN }
   | ')' { RPAREN }
   | '{' { LCURLY }
   | '}' { RCURLY }
   | ',' { COMMA }
   | ';' { SEMICOLON }
-  | decimal_num as num { DECINT(int_x num) }
+  | decimal_num as num { DECINT(int_of_string num) }
   | '\''(allowed_chars)'\'' as char 
     {
       let len = String.length char in
@@ -90,13 +91,13 @@ rule token = parse
         let found = String.sub char 1 (String.length char - 1) in
         let msg = "Invalid character literal \"" ^ found ^ "\"" in
         let line = lexbuf.lex_curr_p.pos_lnum in
-        lex_error 1 msg line () 
+        lex_error 1 msg line
     }
   | eof { EOF }
   | _ as char
     { 
-      let str = String.make 1 char in
-      let msg = "Unrecognized symbol: \"" ^ (String.make 1 char) ^ "\"" in
+      let symbol = String.make 1 char in
+      let msg = "Unrecognized symbol: \"" ^ symbol ^ "\"" in
       let line = lexbuf.lex_curr_p.pos_lnum in
-      lex_error 1 msg line_no
+      lex_error 1 msg line
     }

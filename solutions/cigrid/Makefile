@@ -1,6 +1,6 @@
 
 run:
-	ocamlbuild -use-menhir cigrid.native
+	ocamlbuild -use-menhir -menhir "menhir --external-tokens Token" cigrid.native
 	mv cigrid.native cigrid
 
 clean:

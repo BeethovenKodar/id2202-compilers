@@ -46,7 +46,7 @@ type statement =
   | SExpr of expression
   | SVarDef of t * string * expression
   | SVarAssign of string * expression
-  | SArrayAssign of string * expression * string option * expression
+  (* | SArrayAssign of string * expression * string option * expression *)
   | SScope of statement list
   | SIf of expression * statement * statement option
   | SWhile of expression * statement
@@ -57,8 +57,8 @@ type statement =
 type g = 
   | GFuncDef of t * string * (t * string) list * statement
   | GFuncDecl of t * string * (t * string) list 
-  | GVarDef of t * string * expression
-  | GVarDecl of t * string
-  | GStruct of string * (t * string) list
+  (* | GVarDef of t * string * expression *)
+  (* | GVarDecl of t * string *)
+  (* | GStruct of string * (t * string) list *)
 
 type p = Prog of g list

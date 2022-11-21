@@ -1,6 +1,6 @@
 ### Starting build.
 # Target: cigrid.ml.depends, tags: { extension:ml, file:cigrid.ml, ocaml, ocamldep, quiet }
-/home/vagrant/.opam/default/bin/ocamldep.opt -modules cigrid.ml > cigrid.ml.depends # cached
+/home/vagrant/.opam/default/bin/ocamldep.opt -modules cigrid.ml > cigrid.ml.depends
 # Target: lexer.mll, tags: { extension:mll, file:lexer.mll, lexer, ocaml, ocamllex, quiet }
 /home/vagrant/.opam/default/bin/ocamllex.opt -q lexer.mll # cached
 # Target: lexer.ml.depends, tags: { extension:ml, file:lexer.ml, ocaml, ocamldep, quiet }
@@ -9,16 +9,40 @@
 /home/vagrant/.opam/default/bin/ocamldep.opt -modules token.ml > token.ml.depends # cached
 # Target: token.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:token.cmo, file:token.ml, implem, ocaml, quiet }
 /home/vagrant/.opam/default/bin/ocamlc.opt -c -o token.cmo token.ml # cached
+# Target: lexer.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:lexer.cmo, file:lexer.ml, implem, ocaml, quiet }
+/home/vagrant/.opam/default/bin/ocamlc.opt -c -o lexer.cmo lexer.ml # cached
 # Target: parser.mly.depends, tags: { extension:mly, file:parser.mly, infer, menhir_ocamldep, ocaml, ocamldep, quiet }
-menhir --raw-depend --ocamldep '/home/vagrant/.opam/default/bin/ocamldep.opt -modules' parser.mly > parser.mly.depends # cached
+menhir --external-tokens Token --raw-depend --ocamldep '/home/vagrant/.opam/default/bin/ocamldep.opt -modules' parser.mly > parser.mly.depends # cached
 # Target: ast_types.ml.depends, tags: { extension:ml, file:ast_types.ml, ocaml, ocamldep, quiet }
 /home/vagrant/.opam/default/bin/ocamldep.opt -modules ast_types.ml > ast_types.ml.depends # cached
 # Target: ast_types.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:ast_types.cmo, file:ast_types.ml, implem, ocaml, quiet }
 /home/vagrant/.opam/default/bin/ocamlc.opt -c -o ast_types.cmo ast_types.ml # cached
 # Target: parser.mly, tags: { byte, compile, extension:ml, extension:mly, file:parser.ml, file:parser.mly, infer, menhir, ocaml, parser, quiet }
-menhir --ocamlc /home/vagrant/.opam/default/bin/ocamlc.opt --infer parser.mly
-+ menhir --ocamlc /home/vagrant/.opam/default/bin/ocamlc.opt --infer parser.mly
-File "parser.mly", line 161, characters 40-50:
-Error: Unbound constructor SVarAssign
-Command exited with code 1.
-# Compilation unsuccessful.
+menhir --external-tokens Token --ocamlc /home/vagrant/.opam/default/bin/ocamlc.opt --infer parser.mly # cached
+# Target: parser.mli.depends, tags: { extension:mli, file:parser.mli, ocaml, ocamldep, quiet }
+/home/vagrant/.opam/default/bin/ocamldep.opt -modules parser.mli > parser.mli.depends # cached
+# Target: parser.cmi, tags: { byte, compile, extension:mli, file:parser.mli, interf, ocaml, quiet }
+/home/vagrant/.opam/default/bin/ocamlc.opt -c -o parser.cmi parser.mli # cached
+# Target: pprint_ast.ml.depends, tags: { extension:ml, file:pprint_ast.ml, ocaml, ocamldep, quiet }
+/home/vagrant/.opam/default/bin/ocamldep.opt -modules pprint_ast.ml > pprint_ast.ml.depends # cached
+# Target: pprint_ast.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:pprint_ast.cmo, file:pprint_ast.ml, implem, ocaml, quiet }
+/home/vagrant/.opam/default/bin/ocamlc.opt -c -o pprint_ast.cmo pprint_ast.ml # cached
+# Target: cigrid.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:cigrid.cmo, file:cigrid.ml, implem, ocaml, quiet }
+/home/vagrant/.opam/default/bin/ocamlc.opt -c -o cigrid.cmo cigrid.ml
+# Target: token.cmx, tags: { compile, extension:cmx, extension:ml, file:token.cmx, file:token.ml, implem, native, ocaml, quiet }
+/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o token.cmx token.ml # cached
+# Target: lexer.cmx, tags: { compile, extension:cmx, extension:ml, file:lexer.cmx, file:lexer.ml, implem, native, ocaml, quiet }
+/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o lexer.cmx lexer.ml # cached
+# Target: parser.ml.depends, tags: { extension:ml, file:parser.ml, ocaml, ocamldep, quiet }
+/home/vagrant/.opam/default/bin/ocamldep.opt -modules parser.ml > parser.ml.depends # cached
+# Target: ast_types.cmx, tags: { compile, extension:cmx, extension:ml, file:ast_types.cmx, file:ast_types.ml, implem, native, ocaml, quiet }
+/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o ast_types.cmx ast_types.ml # cached
+# Target: parser.cmx, tags: { compile, extension:cmx, extension:ml, file:parser.cmx, file:parser.ml, implem, native, ocaml, quiet }
+/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o parser.cmx parser.ml # cached
+# Target: pprint_ast.cmx, tags: { compile, extension:cmx, extension:ml, file:pprint_ast.cmx, file:pprint_ast.ml, implem, native, ocaml, quiet }
+/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o pprint_ast.cmx pprint_ast.ml # cached
+# Target: cigrid.cmx, tags: { compile, extension:cmx, extension:ml, file:cigrid.cmx, file:cigrid.ml, implem, native, ocaml, quiet }
+/home/vagrant/.opam/default/bin/ocamlopt.opt -c -o cigrid.cmx cigrid.ml
+# Target: cigrid.native, tags: { dont_link_with, extension:native, file:cigrid.native, link, native, ocaml, program, quiet }
+/home/vagrant/.opam/default/bin/ocamlopt.opt ast_types.cmx token.cmx lexer.cmx parser.cmx pprint_ast.cmx cigrid.cmx -o cigrid.native
+# Compilation successful.

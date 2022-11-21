@@ -4,24 +4,28 @@ type token =
   | BREAK                   (* KEYWORDS *)
   (* | DELETE *)
   | ELSE
-  | EXTERN
-  | FOR
+  (* | EXTERN *)
+  (* | FOR *)
   | IF
   | RETURN
   (* | NEW *)
-  | STRUCT
-  | VOID
+  (* | STRUCT *)
   | WHILE
-  | ADD                     (* GENERAL CHARACTERS *)
+  | NOT                     (* UNARY OPERATORS *)
+  | TILDE
+  | UMINUS
+  | ADD                     (* BINARY OPERATORS *)
+  | ADDSUGAR
   | SUB
+  | SUBSUGAR
   | MUL
   | DIV
   | IDENT of string         (* IDENTIFIER *)
   | MOD
   | LT
   | GT
-  | LTE
-  | GTE 
+  | LTEQ
+  | GTEQ 
   | ASSIGN
   | EQ
   | NEQ 
@@ -29,17 +33,17 @@ type token =
   | BITOR
   | AND
   | OR
-  | DASH
-  | NOT
-  | TILDE
-  | LBRACK
-  | RBRACK
+  | TVOID                   (* TYPES *)
+  | TINT 
+  | TCHAR
+  | DECINT of int           (* VALUES *)
+  | CHAR of char
+  (* | LBRACK *)
+  (* | RBRACK *)
   | LPAREN
   | RPAREN
   | LCURLY
   | RCURLY
   | COMMA
   | SEMICOLON
-  | DECINT of int           (* TYPES *)
-  | CHAR of char
   | EOF                     (* SPECIAL CHARACTER *)
