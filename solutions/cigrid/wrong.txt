@@ -1,0 +1,38 @@
+GFuncDef(TVoid, "empty", {}, SScope({}))
+
+GFuncDef(TInt, "one_param_return", {(TInt, TIdent(x))}, SScope({SReturn(EVar(x)) }))
+
+GFuncDef(TInt, "two_params_return", {(TInt, TIdent(x))(TInt, TIdent(y))}, SScope({SReturn(EVar(x)) }))
+
+GFuncDef(TVoid, "call_no_args_call_statemant", {}, SScope({SExpr(ECall(empty, )) }))
+
+GFuncDef(TInt, "call_one_args", {}, SScope({SReturn(ECall(one_param_return, EInt(123))) }))
+
+GFuncDef(TInt, "call_two_args_var_expr", {(TInt, TIdent(x))}, SScope({SReturn(ECall(two_params_return, EInt(321)EVar(x))) }))
+
+GFuncDef(TVoid, "print_char_consts", {}, SScope({SExpr(ECall(putchar, EChar(A))) SExpr(ECall(putchar, EChar(
+))) SExpr(ECall(putchar, EChar(	))) SExpr(ECall(putchar, EChar(.))) SExpr(ECall(putchar, EChar(\))) SExpr(ECall(putchar, EChar('))) SExpr(ECall(putchar, EChar("))) SExpr(ECall(putchar, EChar(
+))) SReturn() }))
+
+GFuncDef(TVoid, "arith_assignments", {(TInt, TIdent(x))(TInt, TIdent(y))(TInt, TIdent(z))}, SScope({SVarAssign(TIdent(x), EBinOp(+, EVar(x), EInt(1))) SVarAssign(TIdent(x), EBinOp(-, EVar(x), EBinOp(*, EVar(y), EInt(8)))) SVarAssign(TIdent(y), EBinOp(%, EInt(12), EBinOp(/, EVar(z), EInt(3)))) }))
+
+GFuncDef(TVoid, "logic_operations", {(TInt, TIdent(x))(TInt, TIdent(y))(TInt, TIdent(z))}, SScope({SVarAssign(TIdent(x), EBinOp(|, EVar(y), EBinOp(&, EVar(z), EInt(7)))) SVarAssign(TIdent(x), EBinOp(||, EVar(y), EBinOp(&&, EVar(z), EBinOp(|, EVar(y), EInt(1))))) SVarAssign(TIdent(y), EBinOp(>, EVar(x), EBinOp(&&, EVar(y), EBinOp(<, EVar(y), EBinOp(||, EVar(x), EBinOp(>=, EVar(z), EBinOp(&&, EVar(y), EBinOp(==, EBinOp(<=, EVar(x), EVar(y)), EInt(0))))))))) SVarAssign(TIdent(z), EBinOp(==, EVar(x), EBinOp(||, EVar(y), EBinOp(!=, EVar(x), EVar(z))))) }))
+
+GFuncDef(TInt, "if_then_else", {(TInt, TIdent(x))(TInt, TIdent(y))}, SScope({SIf(EBinOp(==, EVar(x), EVar(y)), SReturn(EVar(y)), ) SIf(EBinOp(>, EVar(x), EInt(0)), SScope({SIf(EBinOp(==, EVar(x), EInt(3)), SScope({SVarAssign(TIdent(x), EBinOp(+, EVar(x), EInt(1))) SReturn(EVar(x)) }), ) }), SScope({SVarAssign(TIdent(x), EInt(7)) SReturn(EBinOp(+, EVar(x), EInt(1))) })) SReturn(EVar(x)) }))
+
+GFuncDef(TInt, "if_then_dangeling_else", {(TInt, TIdent(x))}, SScope({SIf(EBinOp(>, EVar(x), EInt(0)), SIf(EBinOp(<, EVar(x), EInt(10)), SReturn(EBinOp(+, EVar(x), EInt(1))), SReturn(EBinOp(+, EVar(x), EInt(2)))), ) SReturn(EVar(x)) }))
+
+GFuncDef(TInt, "while_break", {(TInt, TIdent(x))}, SScope({SWhile(EBinOp(<, EVar(x), EInt(10)), SScope({SIf(EBinOp(==, EVar(x), EInt(7)), SBreak, ) SVarAssign(TIdent(x), EBinOp(+, EVar(x), EInt(1))) })) SReturn(EVar(x)) }))
+
+GFuncDef(TVoid, "pluspluss_minusminus", {(TInt, TIdent(x))}, SScope({SVarAssign(TIdent(x), EBinOp(+, EVar(x), EInt(1))) SVarAssign(TIdent(x), EBinOp(-, EVar(x), EInt(1))) }))
+
+GFuncDef(TVoid, "defining_local_variables", {}, SScope({SVarDef(TInt, TIdent(x), EInt(1)) SVarDef(TInt, TIdent(y), EInt(5)) }))
+
+GFuncDef(TInt, "use_global", {(TInt, TIdent(x))}, SScope({SReturn(EBinOp(+, EVar(global_x), EBinOp(+, EVar(global_y), EVar(x)))) }))
+
+GFuncDef(TVoid, "print_int_ln", {(TInt, TIdent(x))}, SScope({SExpr(ECall(print_int, EVar(x))) SExpr(ECall(putchar, EChar(
+))) }))
+
+GFuncDef(TInt, "main", {}, SScope({SExpr(ECall(test_recursive_data_structures, )) SExpr(ECall(print_test_strings, )) SReturn(EInt(0)) }))
+
+

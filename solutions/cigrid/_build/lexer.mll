@@ -59,7 +59,7 @@ rule token = parse
   | '}' { RCURLY }
   | ',' { COMMA }
   | ';' { SEMICOLON }
-  | comment as str { token lexbuf }            (* IGNORED PATTERNS *) 
+  | comment { token lexbuf }            (* IGNORED PATTERNS *) 
   | whitespace as white
     { 
       match white with

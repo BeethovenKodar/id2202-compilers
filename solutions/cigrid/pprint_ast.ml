@@ -27,7 +27,7 @@ let p_typ = function
   | TVoid -> "TVoid"
   | TInt -> "TInt"
   | TChar -> "TChar"
-  | TIdent(str) -> "TIdent(" ^ str ^ ")"
+  | TIdent(str) -> str
 
 let p_ident str =
   "TIdent(" ^ str ^ ")"
@@ -35,7 +35,7 @@ let p_ident str =
 let rec p_stmt_l = function
   | [] -> ""
   | (hd::tl) ->
-    p_stmt hd ^ p_stmt_l tl
+    p_stmt hd ^ " " ^ p_stmt_l tl
 
 and p_stmt_opt = function
   | None -> ""
@@ -96,9 +96,9 @@ and p_expr = function
     let e_str = p_expr e in
       "EUnOp(" ^ uop_str ^ ", " ^ e_str ^ ")"
   | ECall(id, expr_l) ->
-    let id_str = p_ident id in
+    let id_str = id in
     let expr_l_str = p_expr_l expr_l in
-      "ECall(" ^ id_str ^ ", " ^ expr_l_str ^ ")"
+      "ECall(\"" ^ id_str ^ "\", {" ^ expr_l_str ^ "})"
     
 let rec p_param_l = function
   | [] -> ""
@@ -112,13 +112,13 @@ let p_global = function
     let t_str = p_typ t in
     let id_str = id in
     let param_l_str = p_param_l param_l in
-      "GFuncDecl(" ^ t_str ^ ", \"" ^ id_str ^ "\" {" ^ param_l_str ^ "})"
+      "GFuncDecl(" ^ t_str ^ ",\n\t \"" ^ id_str ^ "\"\n{" ^ param_l_str ^ "})"
   | GFuncDef(t, id, param_l, stmt) ->
     let t_str = p_typ t in
     let id_str = id in
     let param_l_str = p_param_l param_l in
     let stmt_str = p_stmt stmt in
-      "GFuncDef(" ^ t_str  ^ ", \"" ^ id_str ^ "\", " ^ "{" ^ param_l_str ^ "}, " ^ stmt_str  ^ ")"
+      "GFuncDef(" ^ t_str  ^ ",\n\t \"" ^ id_str ^ "\", {" ^ param_l_str ^ "}, \n\t" ^ stmt_str  ^ ")"
   (* | GVarDef(...) *)
   (* | GVarDecl(...) *)
     
