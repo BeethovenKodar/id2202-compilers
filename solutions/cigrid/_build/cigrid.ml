@@ -13,7 +13,7 @@ let get_token_list lexbuf =
   List.rev (work [])
 
 
-let usage = "./cigrid --pretty-print source-file "
+let usage_msg = "./cigrid --pretty-print source-file "
 let pretty_print = ref false
 let input_files = ref []
 let anon_args file = 
@@ -24,25 +24,30 @@ let speclist =
   ]
 
 let main =
-  Arg.parse speclist anon_args usage;
+  try
+    Arg.parse_argv Sys.argv speclist anon_args usage_msg;
 
-  if !pretty_print = false then
-    exit 0;
-  
-  let rec work = function 
-  | [] -> exit 0
-  | (hd::tl) ->
-    let lexbuf = Lexing.from_channel (Stdlib.open_in hd) in
-    (* let token_list = get_token_list lexbuf in *)
-    (* Printf.printf "%d" (List.length token_list); *)
-    let list_of_ast_globals = 
-      try
-        Parser.program Lexer.token lexbuf
-      with
-      | Parser.Error ->
-        let () = printf "Parse error at line %d\n" (lexbuf.lex_curr_p.pos_lnum) in
-        exit 1 
-      in
-    let () = Pprint_ast.p_prog list_of_ast_globals in
-    work tl
-  in work !input_files
+    if !pretty_print = false then
+      exit 0;
+    
+    let rec work = function 
+    | [] -> exit 0
+    | (hd::tl) ->
+      let lexbuf = Lexing.from_channel (Stdlib.open_in hd) in
+      (* let token_list = get_token_list lexbuf in
+      Printf.printf "%d" (List.length token_list); *)
+      let list_of_ast_globals = 
+        try
+          Parser.program Lexer.token lexbuf
+        with
+        | Parser.Error ->
+          let () = printf "Parse error at line %d\n" (lexbuf.lex_curr_p.pos_lnum) in
+          exit 1 
+        in
+      let () = Pprint_ast.p_prog list_of_ast_globals in
+      work tl
+    in work !input_files
+  with
+  Arg.Bad(msg) ->
+    let () = Printf.printf "%s" msg in
+    exit 1

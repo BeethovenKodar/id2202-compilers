@@ -45,7 +45,11 @@ GFuncDef(TVoid,
 GFuncDef(TVoid,
   "logic_operations",
   {(TInt, "x") (TInt, "y") (TInt, "z")},
-  SScope({SVarAssign("x", EBinOp(|, EVar("y"), EBinOp(&, EVar("z"), EInt(7))))
+  SScope({
+      SVarAssign("x", 
+        EBinOp(|, 
+          EVar("y"), 
+          EBinOp(&, EVar("z"), EInt(7))))
       SVarAssign("x",
         EBinOp(||,
           EVar("y"),
@@ -117,7 +121,7 @@ GFuncDef(TVoid,
   {(TInt, "x")},
   SScope({SExpr(ECall("print_int", {EVar("x")}))
       SExpr(ECall("putchar", {EChar('\n')}))}))
-      
+
 GFuncDef(TInt,
   "main",
   {},

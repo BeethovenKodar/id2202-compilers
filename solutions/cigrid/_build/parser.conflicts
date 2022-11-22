@@ -1,0 +1,95 @@
+
+** Conflict (shift/reduce) in state 76.
+** Token involved: ELSE
+** This state is reached from program after reading:
+
+typ IDENT LPAREN params RPAREN LCURLY IF LPAREN expr RPAREN IF LPAREN expr RPAREN stmt
+
+** The derivations that appear below have the following common factor:
+** (The question mark symbol (?) represents the spot where the derivations begin to differ.)
+
+program 
+list(global) EOF 
+global list(global) 
+typ IDENT LPAREN params RPAREN LCURLY list(stmt) RCURLY 
+                                      stmt list(stmt) 
+                                      (?)
+
+** In state 76, looking ahead at ELSE, shifting is permitted
+** because of the following sub-derivation:
+
+IF LPAREN expr RPAREN stmt ELSE stmt 
+                      IF LPAREN expr RPAREN stmt . ELSE stmt 
+
+** In state 76, looking ahead at ELSE, reducing production
+** stmt -> IF LPAREN expr RPAREN stmt
+** is permitted because of the following sub-derivation:
+
+IF LPAREN expr RPAREN stmt ELSE stmt // lookahead token appears
+                      IF LPAREN expr RPAREN stmt . 
+
+** Conflict (shift/reduce) in state 44.
+** Tokens involved: SUB OR NEQ MUL MOD LTEQ LT GTEQ GT EQ DIV BITOR BITAND AND ADD
+** The following explanations concentrate on token SUB.
+** This state is reached from program after reading:
+
+typ IDENT LPAREN params RPAREN LCURLY RETURN expr binop expr
+
+** The derivations that appear below have the following common factor:
+** (The question mark symbol (?) represents the spot where the derivations begin to differ.)
+
+program 
+list(global) EOF 
+global list(global) 
+typ IDENT LPAREN params RPAREN LCURLY list(stmt) RCURLY 
+                                      stmt list(stmt) 
+                                      RETURN option(expr) SEMICOLON 
+                                             expr 
+                                             (?)
+
+** In state 44, looking ahead at SUB, shifting is permitted
+** because of the following sub-derivation:
+
+expr binop expr 
+           expr binop expr 
+                . SUB 
+
+** In state 44, looking ahead at SUB, reducing production
+** expr -> expr binop expr
+** is permitted because of the following sub-derivation:
+
+expr binop expr // lookahead token appears because binop can begin with SUB
+expr binop expr . 
+
+** Conflict (shift/reduce) in state 27.
+** Tokens involved: SUB OR NEQ MUL MOD LTEQ LT GTEQ GT EQ DIV BITOR BITAND AND ADD
+** The following explanations concentrate on token SUB.
+** This state is reached from program after reading:
+
+typ IDENT LPAREN params RPAREN LCURLY RETURN unop expr
+
+** The derivations that appear below have the following common factor:
+** (The question mark symbol (?) represents the spot where the derivations begin to differ.)
+
+program 
+list(global) EOF 
+global list(global) 
+typ IDENT LPAREN params RPAREN LCURLY list(stmt) RCURLY 
+                                      stmt list(stmt) 
+                                      RETURN option(expr) SEMICOLON 
+                                             expr 
+                                             (?)
+
+** In state 27, looking ahead at SUB, shifting is permitted
+** because of the following sub-derivation:
+
+unop expr 
+     expr binop expr 
+          . SUB 
+
+** In state 27, looking ahead at SUB, reducing production
+** expr -> unop expr
+** is permitted because of the following sub-derivation:
+
+expr binop expr // lookahead token appears because binop can begin with SUB
+unop expr . 

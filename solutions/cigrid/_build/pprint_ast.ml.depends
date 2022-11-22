@@ -1,1 +1,1 @@
-pprint_ast.ml: Ast_types String
+pprint_ast.ml: Ast_types Char

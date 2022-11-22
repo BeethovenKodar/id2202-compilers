@@ -12,11 +12,9 @@ let whitespace = ' ' | '\n' | '\r'
 let decimal_num = '0' | ['1'-'9']['0'-'9']*
 let allowed_chars = ' ' | '!' | ['#'-'&'] | ['('-'.'] | ['/'-'~']  
                         | "\\n" | "\\t" | "\\'" | "\\\"" | "\\\\"
-let comment = "#"[^'\n']*'\n' 
-            | "/*"(whitespace | allowed_chars)*"*/" 
+let single_line_comment = "#"[^'\n']*'\n'
             | "//"[^'\n']*'\n'
 let identifier = ['_''a'-'z''A'-'Z']['_''a'-'z''A'-'Z''0'-'9']*
-
 
 rule token = parse
   | "break" { BREAK }                   (* KEYWORDS *)
@@ -44,10 +42,10 @@ rule token = parse
   | "==" { EQ }
   | "="  { ASSIGN }
   | "!=" { NEQ }
-  | "&&" { AND }
   | '&' { BITAND }
-  | "||" { OR }
+  | "&&" { AND }
   | '|' { BITOR }
+  | "||" { OR }
   | '-' { UMINUS }
   | '!' { NOT }
   | '~' { TILDE }
@@ -59,7 +57,8 @@ rule token = parse
   | '}' { RCURLY }
   | ',' { COMMA }
   | ';' { SEMICOLON }
-  | comment { token lexbuf }            (* IGNORED PATTERNS *) 
+  | "/*" { multi_line_comment lexbuf }
+  | single_line_comment { token lexbuf }            (* SINGLE LINE COMMENTS *) 
   | whitespace as white
     { 
       match white with
@@ -101,3 +100,13 @@ rule token = parse
       let line = lexbuf.lex_curr_p.pos_lnum in
       lex_error 1 msg line
     }
+
+(* identify newlines *)
+and multi_line_comment = parse
+  | '\n'
+    {
+      let () = Lexing.new_line lexbuf in
+      multi_line_comment lexbuf
+    } 
+  | "*/" { token lexbuf }
+  | _ { multi_line_comment lexbuf }

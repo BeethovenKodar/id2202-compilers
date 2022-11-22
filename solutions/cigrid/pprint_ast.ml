@@ -30,7 +30,7 @@ let p_typ = function
   | TIdent(str) -> str
 
 let p_ident str =
-  "TIdent(" ^ str ^ ")"
+  str
 
 let rec p_stmt_l = function
   | [] -> ""
@@ -49,11 +49,11 @@ and p_stmt = function
     let t_str = p_typ t in
     let id_str = p_ident id in
     let e_str = p_expr e in
-      "SVarDef(" ^ t_str ^ ", " ^ id_str ^ ", " ^ e_str ^ ")"
+      "SVarDef(" ^ t_str ^ ", \"" ^ id_str ^ "\", " ^ e_str ^ ")"
   | SVarAssign(id, e) ->
     let id_str = p_ident id in
     let e_str = p_expr e in
-      "SVarAssign(" ^ id_str ^ ", " ^ e_str ^ ")"
+      "SVarAssign(\"" ^ id_str ^ "\", " ^ e_str ^ ")"
   (* | SArrayAssign of string * expression * string option * expression *)
   | SScope(stmt_l) ->
     let stmt_l_str = p_stmt_l stmt_l in
@@ -82,9 +82,13 @@ and p_expr_l = function
     p_expr hd ^ p_expr_l tl
       
 and p_expr = function
-  | EVar(str) -> "EVar(" ^ str ^ ")"
+  | EVar(str) -> "EVar(\"" ^ str ^ "\")"
   | EInt(value) -> "EInt(" ^ (string_of_int value) ^ ")"
-  | EChar(c) -> "EChar(" ^ (String.make 1 c) ^ ")"
+  | EChar(c) -> 
+    begin match c with
+    | '\"' -> "\\\""
+    | _ -> "EChar(\'" ^ (Char.escaped c) ^ "\')"
+    end
   (* | EString of string, not s level *)
   | EBinOp(bop, e1, e2) ->
     let bop_str = p_bop bop in
@@ -105,17 +109,17 @@ let rec p_param_l = function
   | ((t, id)::tl) ->
     let t_str = p_typ t in
     let id_str = p_ident id in
-    "(" ^ t_str ^ ", " ^ id_str ^ ")" ^ p_param_l tl
+    "(" ^ t_str ^ ", \"" ^ id_str ^ "\")" ^ p_param_l tl
 
 let p_global = function
   | GFuncDecl(t, id, param_l) ->
     let t_str = p_typ t in
-    let id_str = id in
+    let id_str = p_ident id in
     let param_l_str = p_param_l param_l in
       "GFuncDecl(" ^ t_str ^ ",\n\t \"" ^ id_str ^ "\"\n{" ^ param_l_str ^ "})"
   | GFuncDef(t, id, param_l, stmt) ->
     let t_str = p_typ t in
-    let id_str = id in
+    let id_str = p_ident id in
     let param_l_str = p_param_l param_l in
     let stmt_str = p_stmt stmt in
       "GFuncDef(" ^ t_str  ^ ",\n\t \"" ^ id_str ^ "\", {" ^ param_l_str ^ "}, \n\t" ^ stmt_str  ^ ")"
