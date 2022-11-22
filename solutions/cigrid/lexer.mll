@@ -74,7 +74,13 @@ rule token = parse
     {
       let len = String.length char in
       if len = 3 then
-        CHAR(String.get char 1)
+        let ch = String.get char 1 in
+        if ch = '\\' then
+          let msg = "Lexing error: Invalid char \'" ^ String.make 1 ch ^ "\' within single quotes" in
+          let line = lexbuf.lex_curr_p.pos_lnum in
+          lex_error 1 msg line
+        else
+          CHAR(String.get char 1)
       else if len = 4 then begin        (* ESCAPABLE CHARACTERS *)
         match String.sub char 1 2 with
         | "\\n" -> CHAR('\n')
@@ -83,12 +89,12 @@ rule token = parse
         | "\\\"" -> CHAR('\"')
         | "\\\\" -> CHAR('\\')
         | str -> 
-          let msg = "Unrecognized char literal \"" ^ str ^ "\"" in
+          let msg = "Lexing error: Unrecognized char literal \"" ^ str ^ "\"" in
           let line = lexbuf.lex_curr_p.pos_lnum in
           lex_error 1 msg line
       end else 
         let found = String.sub char 1 (String.length char - 1) in
-        let msg = "Invalid character literal \"" ^ found ^ "\"" in
+        let msg = "Lexing error: Invalid character literal \"" ^ found ^ "\"" in
         let line = lexbuf.lex_curr_p.pos_lnum in
         lex_error 1 msg line
     }
@@ -101,7 +107,8 @@ rule token = parse
       lex_error 1 msg line
     }
 
-(* identify newlines *)
+(* identify newlines: inspiration from
+https://mukulrathi.com/create-your-own-programming-language/parsing-ocamllex-menhir/ *)
 and multi_line_comment = parse
   | '\n'
     {

@@ -35,7 +35,7 @@ let p_ident str =
 let rec p_stmt_l = function
   | [] -> ""
   | (hd::tl) ->
-    p_stmt hd ^ " " ^ p_stmt_l tl
+    p_stmt hd ^ "\n\t\t" ^ p_stmt_l tl
 
 and p_stmt_opt = function
   | None -> ""
@@ -57,7 +57,7 @@ and p_stmt = function
   (* | SArrayAssign of string * expression * string option * expression *)
   | SScope(stmt_l) ->
     let stmt_l_str = p_stmt_l stmt_l in
-      "SScope({" ^ stmt_l_str ^ "})"
+      "SScope({\n\t\t" ^ stmt_l_str ^ "})"
   | SIf(e, if_stmt, else_stmt) ->
     let e_str = p_expr e in
     let if_stmt_str = p_stmt if_stmt in
@@ -86,7 +86,7 @@ and p_expr = function
   | EInt(value) -> "EInt(" ^ (string_of_int value) ^ ")"
   | EChar(c) -> 
     begin match c with
-    | '\"' -> "\\\""
+    | '\"' -> "EChar(\'\\\"\')"
     | _ -> "EChar(\'" ^ (Char.escaped c) ^ "\')"
     end
   (* | EString of string, not s level *)
@@ -122,7 +122,7 @@ let p_global = function
     let id_str = p_ident id in
     let param_l_str = p_param_l param_l in
     let stmt_str = p_stmt stmt in
-      "GFuncDef(" ^ t_str  ^ ",\n\t \"" ^ id_str ^ "\", {" ^ param_l_str ^ "}, \n\t" ^ stmt_str  ^ ")"
+      "GFuncDef(\n\t" ^ t_str  ^ ",\n\t\"" ^ id_str ^ "\", \n\t{" ^ param_l_str ^ "}, \n\t" ^ stmt_str  ^ ")"
   (* | GVarDef(...) *)
   (* | GVarDecl(...) *)
     

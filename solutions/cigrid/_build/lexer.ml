@@ -1028,7 +1028,13 @@ let
     (
       let len = String.length char in
       if len = 3 then
-        CHAR(String.get char 1)
+        let ch = String.get char 1 in
+        if ch = '\\' then
+          let msg = "Lexing error: Invalid char \'" ^ String.make 1 ch ^ "\' within single quotes" in
+          let line = lexbuf.lex_curr_p.pos_lnum in
+          lex_error 1 msg line
+        else
+          CHAR(String.get char 1)
       else if len = 4 then begin        (* ESCAPABLE CHARACTERS *)
         match String.sub char 1 2 with
         | "\\n" -> CHAR('\n')
@@ -1037,36 +1043,36 @@ let
         | "\\\"" -> CHAR('\"')
         | "\\\\" -> CHAR('\\')
         | str -> 
-          let msg = "Unrecognized char literal \"" ^ str ^ "\"" in
+          let msg = "Lexing error: Unrecognized char literal \"" ^ str ^ "\"" in
           let line = lexbuf.lex_curr_p.pos_lnum in
           lex_error 1 msg line
       end else 
         let found = String.sub char 1 (String.length char - 1) in
-        let msg = "Invalid character literal \"" ^ found ^ "\"" in
+        let msg = "Lexing error: Invalid character literal \"" ^ found ^ "\"" in
         let line = lexbuf.lex_curr_p.pos_lnum in
         lex_error 1 msg line
     )
-# 1050 "lexer.ml"
+# 1056 "lexer.ml"
 
   | 41 ->
-# 95 "lexer.mll"
+# 101 "lexer.mll"
         ( EOF )
-# 1055 "lexer.ml"
+# 1061 "lexer.ml"
 
   | 42 ->
 let
-# 96 "lexer.mll"
+# 102 "lexer.mll"
          char
-# 1061 "lexer.ml"
+# 1067 "lexer.ml"
 = Lexing.sub_lexeme_char lexbuf lexbuf.Lexing.lex_start_pos in
-# 97 "lexer.mll"
+# 103 "lexer.mll"
     ( 
       let symbol = String.make 1 char in
       let msg = "Unrecognized symbol: \"" ^ symbol ^ "\"" in
       let line = lexbuf.lex_curr_p.pos_lnum in
       lex_error 1 msg line
     )
-# 1070 "lexer.ml"
+# 1076 "lexer.ml"
 
   | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
       __ocaml_lex_token_rec lexbuf __ocaml_lex_state
@@ -1076,31 +1082,31 @@ and multi_line_comment lexbuf =
 and __ocaml_lex_multi_line_comment_rec lexbuf __ocaml_lex_state =
   match Lexing.engine __ocaml_lex_tables __ocaml_lex_state lexbuf with
       | 0 ->
-# 107 "lexer.mll"
+# 114 "lexer.mll"
     (
       let () = Lexing.new_line lexbuf in
       multi_line_comment lexbuf
     )
-# 1085 "lexer.ml"
+# 1091 "lexer.ml"
 
   | 1 ->
-# 111 "lexer.mll"
+# 118 "lexer.mll"
          ( token lexbuf )
-# 1090 "lexer.ml"
+# 1096 "lexer.ml"
 
   | 2 ->
-# 113 "lexer.mll"
+# 120 "lexer.mll"
   ( 
     let msg = "Must close multiline comment with */" in
     let line = lexbuf.lex_curr_p.pos_lnum in
     lex_error 1 msg line
   )
-# 1099 "lexer.ml"
+# 1105 "lexer.ml"
 
   | 3 ->
-# 118 "lexer.mll"
+# 125 "lexer.mll"
       ( multi_line_comment lexbuf )
-# 1104 "lexer.ml"
+# 1110 "lexer.ml"
 
   | __ocaml_lex_state -> lexbuf.Lexing.refill_buff lexbuf;
       __ocaml_lex_multi_line_comment_rec lexbuf __ocaml_lex_state
