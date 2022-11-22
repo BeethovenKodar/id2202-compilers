@@ -59,6 +59,15 @@
 
 // %nonassoc UMINUS
 
+%left OR
+%left AND
+%left BITOR
+%left BITAND
+%left EQ NEQ
+%left LT GT LTEQ GTEQ
+%left ADD SUB
+%left MOD DIV MUL
+
 %start program
 %type <p> program
 
@@ -74,22 +83,22 @@ unop:
   | TILDE  { UnopTilde }
   | UMINUS  { UnopMinus }
 
-binop: 
-  | ADD  { BopAdd }
-  | SUB  { BopSub }
-  | MUL  { BopMul }
-  | DIV  { BopDiv }
-  | MOD  { BopMod }
-  | LT  { BopLt }
-  | GT  { BopGt }
-  | LTEQ { BopLteq }
-  | GTEQ { BopGteq }
-  | EQ { BopEqto }
-  | NEQ { BopNeq }
-  | BITAND  { BopBitAnd }
-  | BITOR  { BopBitOr }
-  | AND { BopAnd }
-  | OR { BopOr }
+// binop: 
+  // | MUL  { BopMul }
+  // | DIV  { BopDiv }
+  // | MOD  { BopMod }
+  // | ADD { BopAdd }
+  // | SUB  { BopSub }
+  // | LT  { BopLt }
+  // | GT  { BopGt }
+  // | LTEQ { BopLteq }
+  // | GTEQ { BopGteq }
+  // | EQ { BopEqto }
+  // | NEQ { BopNeq }
+  // | BITAND  { BopBitAnd }
+  // | BITOR  { BopBitOr }
+  // | AND { BopAnd }
+  // | OR { BopOr }
   
 typ:
   | TVOID { TVoid }
@@ -103,7 +112,21 @@ expr:
   | num = DECINT { EInt(num) }
   | c = CHAR { EChar(c) }
   // | s = STRING { EString(s) }
-  | e1 = expr; bop = binop; e2 = expr { EBinOp(bop, e1, e2) }
+  | e1 = expr; MUL; e2 = expr { EBinOp(BopMul, e1, e2) }
+  | e1 = expr; DIV; e2 = expr { EBinOp(BopDiv, e1, e2) }
+  | e1 = expr; MOD; e2 = expr { EBinOp(BopMod, e1, e2) }
+  | e1 = expr; ADD; e2 = expr { EBinOp(BopAdd, e1, e2) }
+  | e1 = expr; SUB; e2 = expr { EBinOp(BopSub, e1, e2) }
+  | e1 = expr; LT; e2 = expr { EBinOp(BopLt, e1, e2) }
+  | e1 = expr; GT; e2 = expr { EBinOp(BopGt, e1, e2) }
+  | e1 = expr; LTEQ; e2 = expr { EBinOp(BopLteq, e1, e2) }
+  | e1 = expr; GTEQ; e2 = expr { EBinOp(BopGteq, e1, e2) }
+  | e1 = expr; EQ; e2 = expr { EBinOp(BopEqto, e1, e2) }
+  | e1 = expr; NEQ; e2 = expr { EBinOp(BopNeq, e1, e2) }
+  | e1 = expr; BITAND; e2 = expr { EBinOp(BopBitAnd, e1, e2) }
+  | e1 = expr; BITOR; e2 = expr { EBinOp(BopBitOr, e1, e2) }
+  | e1 = expr; AND; e2 = expr { EBinOp(BopAnd, e1, e2) }
+  | e1 = expr; OR; e2 = expr { EBinOp(BopOr, e1, e2) }
   | uop = unop; e = expr { EUnOp(uop, e) }
   (* TESTA 0,1,2 argument *)
   | i = IDENT; LPAREN; e_list = separated_list(COMMA, expr); RPAREN { ECall(i, e_list) }
@@ -114,9 +137,10 @@ expr:
 stmt:
   | var_assign = varassign; SEMICOLON { var_assign }
   | LCURLY; stmt_list = stmt*; RCURLY { SScope(stmt_list) }
-  | IF; LPAREN; e = expr; RPAREN; if_s = stmt; has_else = ELSE; else_s = stmt 
+  | IF; LPAREN; e = expr; RPAREN; if_s = stmt; ELSE; else_s = stmt 
     { SIf(e, if_s, Some else_s) }
-  | IF; LPAREN; e = expr; RPAREN; if_s = stmt { SIf(e, if_s, None) }
+  | IF; LPAREN; e = expr; RPAREN; if_s = stmt 
+    { SIf(e, if_s, None) }
   | WHILE; LPAREN; e = expr; RPAREN; s = stmt { SWhile(e, s) }
   | BREAK; SEMICOLON; { SBreak }
   | RETURN; e = option(expr); SEMICOLON 

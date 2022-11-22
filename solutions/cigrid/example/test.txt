@@ -1,3 +1,17 @@
 void foo() {
-  return '\"';
+  return 1 * 2 - 3 / 6 + 4 % 1 + 2;
 }
+
+EBinOp(+, 
+  EBinOp(+, 
+    EBinOp(-, 
+      EBinOp(*, 
+        EInt(1), 
+          EInt(2)), 
+            EBinOp(/, 
+              EInt(3), 
+                EInt(6))), 
+                  EBinOp(%, 
+                    EInt(4), 
+                      EInt(1))), 
+                        EInt(2)))
