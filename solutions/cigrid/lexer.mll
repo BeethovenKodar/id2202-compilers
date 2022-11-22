@@ -109,4 +109,10 @@ and multi_line_comment = parse
       multi_line_comment lexbuf
     } 
   | "*/" { token lexbuf }
+  | eof 
+  { 
+    let msg = "Must close multiline comment with */" in
+    let line = lexbuf.lex_curr_p.pos_lnum in
+    lex_error 1 msg line
+  }
   | _ { multi_line_comment lexbuf }
