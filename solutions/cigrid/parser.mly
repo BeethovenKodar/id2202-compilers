@@ -12,7 +12,7 @@
 %token BREAK                  (* KEYWORDS *)
 // %token DELETE "delete"
 %token ELSE
-// %token EXTERN
+%token EXTERN
 // %token FOR
 %token IF
 %token RETURN
@@ -172,6 +172,8 @@ params:
 global:
   | t = typ; i = IDENT; LPAREN; p = params; RPAREN; LCURLY; stmt_list = stmt*; RCURLY
     { GFuncDef(t, i, p, SScope(stmt_list)) }
+  | EXTERN; t = typ; i = IDENT; LPAREN; p = params; RPAREN; SEMICOLON
+    { GFuncDecl(t, i, p) }
   // | "extern" ty Ident LBRACK params RBRACK SEMICOLON
   // | ty IDENT  EQ expr SEMICOLON
   // | "extern" ty IDENT  SEMICOLON

@@ -19,7 +19,7 @@ let identifier = ['_''a'-'z''A'-'Z']['_''a'-'z''A'-'Z''0'-'9']*
 rule token = parse
   | "break" { BREAK }                   (* KEYWORDS *)
   | "else" { ELSE }
-  (* | "extern" { EXTERN } *)
+  | "extern" { EXTERN }
   (* | "for" { FOR } *)
   | "if" { IF }
   | "return" { RETURN }

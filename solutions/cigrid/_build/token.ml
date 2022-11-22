@@ -4,7 +4,7 @@ type token =
   | BREAK                   (* KEYWORDS *)
   (* | DELETE *)
   | ELSE
-  (* | EXTERN *)
+  | EXTERN
   (* | FOR *)
   | IF
   | RETURN
