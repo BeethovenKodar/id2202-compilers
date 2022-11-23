@@ -12,13 +12,16 @@
 # Target: lexer.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:lexer.cmo, file:lexer.ml, implem, ocaml, quiet }
 /home/vagrant/.opam/default/bin/ocamlc.opt -c -o lexer.cmo lexer.ml # cached
 # Target: parser.mly.depends, tags: { extension:mly, file:parser.mly, infer, menhir_ocamldep, ocaml, ocamldep, quiet }
-menhir --external-tokens Token --raw-depend --ocamldep '/home/vagrant/.opam/default/bin/ocamldep.opt -modules' parser.mly > parser.mly.depends # cached
+menhir --explain --external-tokens Token --raw-depend --ocamldep '/home/vagrant/.opam/default/bin/ocamldep.opt -modules' parser.mly > parser.mly.depends
 # Target: ast_types.ml.depends, tags: { extension:ml, file:ast_types.ml, ocaml, ocamldep, quiet }
 /home/vagrant/.opam/default/bin/ocamldep.opt -modules ast_types.ml > ast_types.ml.depends # cached
 # Target: ast_types.cmo, tags: { byte, compile, extension:cmo, extension:ml, file:ast_types.cmo, file:ast_types.ml, implem, ocaml, quiet }
 /home/vagrant/.opam/default/bin/ocamlc.opt -c -o ast_types.cmo ast_types.ml # cached
 # Target: parser.mly, tags: { byte, compile, extension:ml, extension:mly, file:parser.ml, file:parser.mly, infer, menhir, ocaml, parser, quiet }
-menhir --external-tokens Token --ocamlc /home/vagrant/.opam/default/bin/ocamlc.opt --infer parser.mly # cached
+menhir --explain --external-tokens Token --ocamlc /home/vagrant/.opam/default/bin/ocamlc.opt --infer parser.mly
++ menhir --explain --external-tokens Token --ocamlc /home/vagrant/.opam/default/bin/ocamlc.opt --infer parser.mly
+Warning: 4 states have shift/reduce conflicts.
+Warning: 46 shift/reduce conflicts were arbitrarily resolved.
 # Target: parser.mli.depends, tags: { extension:mli, file:parser.mli, ocaml, ocamldep, quiet }
 /home/vagrant/.opam/default/bin/ocamldep.opt -modules parser.mli > parser.mli.depends # cached
 # Target: parser.cmi, tags: { byte, compile, extension:mli, file:parser.mli, interf, ocaml, quiet }

@@ -71,34 +71,32 @@
 %start program
 %type <p> program
 
-// ocamlbuild -use-menhir -menhir "menhir --external-tokens Token" cigrid.native
-
 %%
 
 program:
   | ast = global*; EOF { Prog(ast) }
 
-unop:
+%inline unop:
   | NOT  { UnopNot }
   | TILDE  { UnopTilde }
   | UMINUS  { UnopMinus }
 
-// binop: 
-  // | MUL  { BopMul }
-  // | DIV  { BopDiv }
-  // | MOD  { BopMod }
-  // | ADD { BopAdd }
-  // | SUB  { BopSub }
-  // | LT  { BopLt }
-  // | GT  { BopGt }
-  // | LTEQ { BopLteq }
-  // | GTEQ { BopGteq }
-  // | EQ { BopEqto }
-  // | NEQ { BopNeq }
-  // | BITAND  { BopBitAnd }
-  // | BITOR  { BopBitOr }
-  // | AND { BopAnd }
-  // | OR { BopOr }
+%inline binop: 
+  | MUL  { BopMul }
+  | DIV  { BopDiv }
+  | MOD  { BopMod }
+  | ADD { BopAdd }
+  | SUB  { BopSub }
+  | LT  { BopLt }
+  | GT  { BopGt }
+  | LTEQ { BopLteq }
+  | GTEQ { BopGteq }
+  | EQ { BopEqto }
+  | NEQ { BopNeq }
+  | BITAND  { BopBitAnd }
+  | BITOR  { BopBitOr }
+  | AND { BopAnd }
+  | OR { BopOr }
   
 typ:
   | TVOID { TVoid }
@@ -112,23 +110,8 @@ expr:
   | num = DECINT { EInt(num) }
   | c = CHAR { EChar(c) }
   // | s = STRING { EString(s) }
-  | e1 = expr; MUL; e2 = expr { EBinOp(BopMul, e1, e2) }
-  | e1 = expr; DIV; e2 = expr { EBinOp(BopDiv, e1, e2) }
-  | e1 = expr; MOD; e2 = expr { EBinOp(BopMod, e1, e2) }
-  | e1 = expr; ADD; e2 = expr { EBinOp(BopAdd, e1, e2) }
-  | e1 = expr; SUB; e2 = expr { EBinOp(BopSub, e1, e2) }
-  | e1 = expr; LT; e2 = expr { EBinOp(BopLt, e1, e2) }
-  | e1 = expr; GT; e2 = expr { EBinOp(BopGt, e1, e2) }
-  | e1 = expr; LTEQ; e2 = expr { EBinOp(BopLteq, e1, e2) }
-  | e1 = expr; GTEQ; e2 = expr { EBinOp(BopGteq, e1, e2) }
-  | e1 = expr; EQ; e2 = expr { EBinOp(BopEqto, e1, e2) }
-  | e1 = expr; NEQ; e2 = expr { EBinOp(BopNeq, e1, e2) }
-  | e1 = expr; BITAND; e2 = expr { EBinOp(BopBitAnd, e1, e2) }
-  | e1 = expr; BITOR; e2 = expr { EBinOp(BopBitOr, e1, e2) }
-  | e1 = expr; AND; e2 = expr { EBinOp(BopAnd, e1, e2) }
-  | e1 = expr; OR; e2 = expr { EBinOp(BopOr, e1, e2) }
+  | e1 = expr; op = binop; e2 = expr { EBinOp(op, e1, e2) }
   | uop = unop; e = expr { EUnOp(uop, e) }
-  (* TESTA 0,1,2 argument *)
   | i = IDENT; LPAREN; e_list = separated_list(COMMA, expr); RPAREN { ECall(i, e_list) }
   // | "new"; typ; "["; expr; "]" {  }
   // | IDENT "[" expr "]" ["." IDENT]
