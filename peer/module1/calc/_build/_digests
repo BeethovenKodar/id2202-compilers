@@ -1,0 +1,5 @@
+"Rule: ocaml: ml & cmi -> cmx & o (%=calc )": "\232\205?RJ'L\1689\216;\b}\129\198:"
+"Rule: ocaml: ml -> cmo & cmi (%=calc )": "\020jaI\203e~\158\002;\141\171\001\154!v"
+"Resource: /vagrant/solutions/module1/calc/calc.ml": "\207\153\030\199~O\218\191}\195p.\028e\127\237"
+"Rule: ocaml dependencies ml (%=calc )": "\246\023\227M'\139\171\202\235\004m\127$\004,\162"
+"Rule: ocaml: cmx* & o* -> native (%=calc )": "i\167t]+\210\020g\251\1765\177'\1651~"

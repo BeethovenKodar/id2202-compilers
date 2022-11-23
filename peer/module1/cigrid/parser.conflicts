@@ -1,0 +1,104 @@
+
+** Conflict (reduce/reduce) in state 152.
+** Tokens involved: PLUS MIN
+** The following explanations concentrate on token PLUS.
+** This state is reached from program after reading:
+
+ty IDENT LPAREN params RPAREN LBRACE LBRACE IDENT LBRACKET expr RBRACKET option(attr)
+
+** The derivations that appear below have the following common factor:
+** (The question mark symbol (?) represents the spot where the derivations begin to differ.)
+
+program 
+list(global) EOF 
+global list(global) 
+ty IDENT LPAREN params RPAREN LBRACE list(stmt) RBRACE 
+                                     stmt list(stmt) 
+                                     (?)
+
+** In state 152, looking ahead at PLUS, reducing production
+** expr -> IDENT LBRACKET expr RBRACKET option(attr)
+** is permitted because of the following sub-derivation:
+
+LBRACE expr RBRACE 
+       expr PLUS expr // lookahead token appears
+       IDENT LBRACKET expr RBRACKET option(attr) . 
+
+** In state 152, looking ahead at PLUS, reducing production
+** lvalue -> IDENT LBRACKET expr RBRACKET option(attr)
+** is permitted because of the following sub-derivation:
+
+LBRACE list(stmt) RBRACE 
+       stmt list(stmt) 
+       varassign SEMI 
+       assign 
+       lvalue PLUS PLUS // lookahead token appears
+       IDENT LBRACKET expr RBRACKET option(attr) . 
+
+** Conflict (reduce/reduce) in state 145.
+** Tokens involved: STAR PLUS MIN
+** The following explanations concentrate on token STAR.
+** This state is reached from program after reading:
+
+ty IDENT LPAREN params RPAREN LBRACE LBRACE IDENT
+
+** The derivations that appear below have the following common factor:
+** (The question mark symbol (?) represents the spot where the derivations begin to differ.)
+
+program 
+list(global) EOF 
+global list(global) 
+ty IDENT LPAREN params RPAREN LBRACE list(stmt) RBRACE 
+                                     stmt list(stmt) 
+                                     (?)
+
+** In state 145, looking ahead at STAR, reducing production
+** expr -> IDENT
+** is permitted because of the following sub-derivation:
+
+LBRACE expr RBRACE 
+       expr STAR expr // lookahead token appears
+       IDENT . 
+
+** In state 145, looking ahead at STAR, reducing production
+** ty -> IDENT
+** is permitted because of the following sub-derivation:
+
+LBRACE list(stmt) RBRACE 
+       stmt list(stmt) 
+       varassign SEMI 
+       ty IDENT EQUAL expr 
+       ty STAR // lookahead token appears
+       IDENT . 
+
+** Conflict (shift/reduce) in state 132.
+** Token involved: ELSE
+** This state is reached from program after reading:
+
+ty IDENT LPAREN params RPAREN LBRACE IF LPAREN expr RPAREN IF LPAREN expr RPAREN stmt
+
+** The derivations that appear below have the following common factor:
+** (The question mark symbol (?) represents the spot where the derivations begin to differ.)
+
+program 
+list(global) EOF 
+global list(global) 
+ty IDENT LPAREN params RPAREN LBRACE list(stmt) RBRACE 
+                                     stmt list(stmt) 
+                                     (?)
+
+** In state 132, looking ahead at ELSE, shifting is permitted
+** because of the following sub-derivation:
+
+IF LPAREN expr RPAREN stmt option(else_stmt) 
+                      IF LPAREN expr RPAREN stmt option(else_stmt) 
+                                                 else_stmt 
+                                                 . ELSE stmt 
+
+** In state 132, looking ahead at ELSE, reducing production
+** option(else_stmt) ->
+** is permitted because of the following sub-derivation:
+
+IF LPAREN expr RPAREN stmt option(else_stmt) // lookahead token appears because option(else_stmt) can begin with ELSE
+                      IF LPAREN expr RPAREN stmt option(else_stmt) // lookahead token is inherited
+                                                 . 
