@@ -1,7 +1,0 @@
-void foo() {
-  return 1 + 2 * 3 / 4 % 5;
-}
-
-
-SReturn(EBinOp(+, EInt(1), EBinOp(%, EBinOp(/, EBinOp(*, EInt(2), EInt(3)), EInt(4)), EInt(5))))
-SReturn(EBinOp(+, EInt(1), EBinOp(%, EBinOp(/, EBinOp(*, EInt(2), EInt(3)), EInt(4)), EInt(5))))

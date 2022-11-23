@@ -1,7 +1,8 @@
+executable=cigrid
 
-run:
-	ocamlbuild -use-menhir -menhir "menhir --explain --external-tokens Token" cigrid.native
-	mv cigrid.native cigrid
+all:
+	dune build && cp _build/default/src/cigrid.exe $(executable)
 
 clean:
-	rm -rf _build
+	dune clean
+	rm -f $(executable)

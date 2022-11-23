@@ -1,0 +1,10 @@
+(ocamllex lexer)
+(menhir
+ (flags 
+  (--external-tokens Token)
+  (--explain))
+ (modules 
+  parser))
+
+(executable
+ (name cigrid))
