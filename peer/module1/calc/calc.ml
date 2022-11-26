@@ -21,8 +21,9 @@ type expr =
         | ExprDiv of expr * expr
         | ExprNum of int
 
-let rec prettyTok tList = match tList with
-        | TokAdd :: xs -> " + " ^ prettyTok xs
+let rec prettyTok tList = 
+  match tList with
+  | TokAdd :: xs -> " + " ^ prettyTok xs
 	| TokMin :: xs -> " - " ^ prettyTok xs
 	| TokMul :: xs -> " * " ^ prettyTok xs
 	| TokDiv :: xs -> " / " ^ prettyTok xs
@@ -30,7 +31,7 @@ let rec prettyTok tList = match tList with
 	| TokLParen :: xs -> "(" ^ prettyTok xs
 	| TokRParen :: xs -> ")" ^ prettyTok xs
 	| TokEOF :: xs -> "\n"
-        | [] -> ""
+  | [] -> ""
 
 (* All the Lexer stuff boys *)
 (* Returns an array of tokens *)

@@ -1,0 +1,197 @@
+[143353.570767] BUG: unable to handle kernel NULL pointer dereference at 0000000000000000
+[143353.581625] IP:           (null)
+[143353.583988] PGD 0 P4D 0 
+[143353.586074] Oops: 0010 [#1] SMP PTI
+[143353.589764] Modules linked in: vboxsf isofs binfmt_misc crct10dif_pclmul crc32_pclmul ghash_clmulni_intel input_leds serio_raw video vboxguest sch_fq_codel ib_iser rdma_cm iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi aesni_intel aes_x86_64 scsi_transport_spi crypto_simd cryptd mptscsih glue_helper mptbase psmouse e1000
+[143353.631272] CPU: 1 PID: 17609 Comm: git Not tainted 4.15.0-194-generic #205-Ubuntu
+[143353.635790] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[143353.640601] RIP: 0010:          (null)
+[143353.643519] RSP: 0018:ffffa7e7c0ca7c70 EFLAGS: 00010246
+[143353.646856] RAX: ffffffffc07d24c0 RBX: ffffa7e7c0ca7d90 RCX: 0000000000000000
+[143353.651199] RDX: ffffa7e7c0ca7df8 RSI: ffff95e9cdb2a738 RDI: ffff95e9e5329000
+[143353.656403] RBP: ffffa7e7c0ca7ca8 R08: 0000000000000000 R09: ffff95e9e5329000
+[143353.660925] R10: ffffd1b08188ccc0 R11: 000000000000002d R12: 0000000000000000
+[143353.665932] R13: ffffa7e7c0ca7df8 R14: ffff95e9cdb2a738 R15: ffff95e9e5329000
+[143353.670802] FS:  00007f90973f5080(0000) GS:ffff95e9ffd00000(0000) knlGS:0000000000000000
+[143353.675826] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[143353.680791] CR2: 0000000000000000 CR3: 000000007a394005 CR4: 00000000000606e0
+[143353.686318] Call Trace:
+[143353.690899]  trailing_symlink+0x165/0x220
+[143353.695552]  path_openat+0xd1/0x18b0
+[143353.699118]  ? make_kgid+0x17/0x20
+[143353.702010]  do_filp_open+0x9b/0x110
+[143353.705016]  ? cp_new_stat+0x152/0x180
+[143353.708060]  do_sys_open+0x1ba/0x2c0
+[143353.710717]  ? do_sys_open+0x1ba/0x2c0
+[143353.714924]  SyS_openat+0x14/0x20
+[143353.717433]  do_syscall_64+0x73/0x130
+[143353.720881]  entry_SYSCALL_64_after_hwframe+0x41/0xa6
+[143353.724840] RIP: 0033:0x7f9096b3ce1b
+[143353.727496] RSP: 002b:00007ffe3f730de0 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+[143353.732318] RAX: ffffffffffffffda RBX: 000055f96010f550 RCX: 00007f9096b3ce1b
+[143353.736885] RDX: 0000000000000000 RSI: 000055f96010f550 RDI: 00000000ffffff9c
+[143353.741361] RBP: 000055f960128c34 R08: 000055f960108c20 R09: 0000000000000040
+[143353.745856] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+[143353.750252] R13: 000000000000001e R14: 000055f960128bf0 R15: 000055f960108c20
+[143353.754609] Code:  Bad RIP value.
+[143353.756989] RIP:           (null) RSP: ffffa7e7c0ca7c70
+[143353.760291] CR2: 0000000000000000
+[143353.762793] ---[ end trace a8737e517d95f7cc ]---
+[143708.569248] e1000: enp0s3 NIC Link is Down
+[143714.615432] e1000: enp0s3 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
+[145316.565075] e1000: enp0s3 NIC Link is Down
+[145318.752097] 40:22:57.664490 timesync vgsvcTimeSyncWorker: Radical host time change: 5 694 157 000 000ns (HostNow=1 669 224 934 738 000 000 ns HostLast=1 669 219 240 581 000 000 ns)
+[145322.643980] e1000: enp0s3 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
+[145328.781345] 40:23:07.694867 timesync vgsvcTimeSyncWorker: Radical guest time change: 6 060 766 259 000ns (GuestNow=1 669 224 944 770 721 000 ns GuestLast=1 669 218 884 004 462 000 ns fSetTimeLastLoop=true )
+[145358.811722] 40:23:37.721553 timesync vgsvcTimeSyncWorker: Radical host time change: 10 451 533 000 000ns (HostNow=1 669 235 416 416 000 000 ns HostLast=1 669 224 964 883 000 000 ns)
+[145368.857360] 40:23:47.771036 timesync vgsvcTimeSyncWorker: Radical guest time change: 10 451 669 571 000ns (GuestNow=1 669 235 426 466 182 000 ns GuestLast=1 669 224 974 796 611 000 ns fSetTimeLastLoop=true )
+[145378.872016] 40:23:57.785249 timesync vgsvcTimeSyncWorker: Radical host time change: 12 588 336 000 000ns (HostNow=1 669 248 014 838 000 000 ns HostLast=1 669 235 426 502 000 000 ns)
+[145388.899452] 40:24:07.813196 timesync vgsvcTimeSyncWorker: Radical guest time change: 12 588 386 762 000ns (GuestNow=1 669 248 024 866 524 000 ns GuestLast=1 669 235 436 479 762 000 ns fSetTimeLastLoop=true )
+[145391.189505] e1000: enp0s3 NIC Link is Down
+[145397.239757] e1000: enp0s3 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
+[145398.912827] 40:24:17.825683 timesync vgsvcTimeSyncWorker: Radical host time change: 30 669 048 000 000ns (HostNow=1 669 278 693 952 000 000 ns HostLast=1 669 248 024 904 000 000 ns)
+[145408.933108] 40:24:27.846860 timesync vgsvcTimeSyncWorker: Radical guest time change: 30 669 094 888 000ns (GuestNow=1 669 278 703 973 536 000 ns GuestLast=1 669 248 034 878 648 000 ns fSetTimeLastLoop=true )
+[147684.365045] e1000: enp0s3 NIC Link is Down
+[147688.071600] 41:02:28.114802 timesync vgsvcTimeSyncWorker: Radical host time change: 11 413 949 000 000ns (HostNow=1 669 292 395 369 000 000 ns HostLast=1 669 280 981 420 000 000 ns)
+[147690.443391] e1000: enp0s3 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
+[147698.090569] 41:02:38.133711 timesync vgsvcTimeSyncWorker: Radical guest time change: 11 421 152 754 000ns (GuestNow=1 669 292 405 391 062 000 ns GuestLast=1 669 280 984 238 308 000 ns fSetTimeLastLoop=true )
+[164223.543434] e1000: enp0s3 NIC Link is Down
+[164227.724613] e1000: enp0s3 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
+[164231.813302] 45:38:20.111670 timesync vgsvcTimeSyncWorker: Radical host time change: 66 584 858 000 000ns (HostNow=1 669 375 574 196 000 000 ns HostLast=1 669 308 989 338 000 000 ns)
+[164241.832394] 45:38:30.131381 timesync vgsvcTimeSyncWorker: Radical guest time change: 66 636 870 250 000ns (GuestNow=1 669 375 584 227 486 000 ns GuestLast=1 669 308 947 357 236 000 ns fSetTimeLastLoop=true )
+[164251.856245] 45:38:40.156059 timesync vgsvcTimeSyncWorker: Radical host time change: 3 968 722 000 000ns (HostNow=1 669 379 552 987 000 000 ns HostLast=1 669 375 584 265 000 000 ns)
+[164261.878729] 45:38:50.177959 timesync vgsvcTimeSyncWorker: Radical guest time change: 3 968 757 190 000ns (GuestNow=1 669 379 563 009 130 000 ns GuestLast=1 669 375 594 251 940 000 ns fSetTimeLastLoop=true )
+[169277.436539] e1000: enp0s3 NIC Link is Down
+[169281.467475] e1000: enp0s3 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
+[172789.632788] e1000: enp0s3 NIC Link is Down
+[172793.662527] e1000: enp0s3 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
+[172798.638634] 48:01:11.172395 timesync vgsvcTimeSyncWorker: Radical host time change: 81 096 282 000 000ns (HostNow=1 669 469 522 801 000 000 ns HostLast=1 669 388 426 519 000 000 ns)
+[172808.892167] 48:01:21.427442 timesync vgsvcTimeSyncWorker: Radical guest time change: 81 429 089 145 000ns (GuestNow=1 669 469 533 074 375 000 ns GuestLast=1 669 388 103 985 230 000 ns fSetTimeLastLoop=true )
+[172956.434942] SGI XFS with ACLs, security attributes, realtime, no debug enabled
+[177928.673312] show_signal_msg: 5 callbacks suppressed
+[177928.674435] main-asm[13555]: segfault at 1 ip 0000000000400546 sp 00007fff038f3008 error 4 in main-asm[400000+1000]
+[178254.916181] main-asm[13626]: segfault at 1 ip 00007fe505d467a2 sp 00007ffffc10f2c8 error 4 in libc-2.27.so[7fe505cc8000+1e7000]
+[178272.671627] main-asm[13641]: segfault at 1 ip 00007f59a588d7a2 sp 00007fffbb82e468 error 4 in libc-2.27.so[7f59a580f000+1e7000]
+[178635.862315] main-asm[13671]: segfault at 1 ip 00007fa9069197a2 sp 00007ffe2fe256e8 error 4 in libc-2.27.so[7fa90689b000+1e7000]
+[178650.392890] main-asm[13685]: segfault at 1 ip 00007f8a74f1b7a2 sp 00007ffcc9921b08 error 4 in libc-2.27.so[7f8a74e9d000+1e7000]
+[178803.503199] main-asm[13731]: segfault at 1 ip 000000000040055b sp 00007ffcd58e0878 error 6 in main-asm[400000+1000]
+[178920.617250] main-asm[13762]: segfault at 1 ip 00007f4f781417a2 sp 00007ffd8cfa9048 error 4 in libc-2.27.so[7f4f780c3000+1e7000]
+[179021.040110] main-asm[13786]: segfault at 0 ip 000000000040055e sp 00007ffd3caf9338 error 6 in main-asm[400000+1000]
+[179042.591914] main-asm[13813]: segfault at 1 ip 00007f0d105797a2 sp 00007fff0ab7b5f8 error 4 in libc-2.27.so[7f0d104fb000+1e7000]
+[179744.516388] BUG: unable to handle kernel NULL pointer dereference at 0000000000000000
+[179744.521937] IP:           (null)
+[179744.524398] PGD 0 P4D 0 
+[179744.526476] Oops: 0010 [#2] SMP PTI
+[179744.530027] Modules linked in: ufs msdos xfs vboxsf isofs binfmt_misc crct10dif_pclmul crc32_pclmul ghash_clmulni_intel input_leds serio_raw video vboxguest sch_fq_codel ib_iser rdma_cm iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi aesni_intel aes_x86_64 scsi_transport_spi crypto_simd cryptd mptscsih glue_helper mptbase psmouse e1000
+[179744.558279] CPU: 0 PID: 13921 Comm: git Tainted: G      D          4.15.0-194-generic #205-Ubuntu
+[179744.563869] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[179744.569214] RIP: 0010:          (null)
+[179744.571982] RSP: 0018:ffffa7e7c12afc70 EFLAGS: 00010246
+[179744.576197] RAX: ffffffffc07d24c0 RBX: ffffa7e7c12afd90 RCX: 0000000000000000
+[179744.581346] RDX: ffffa7e7c12afdf8 RSI: ffff95e9cdb2a738 RDI: ffff95e9e5329000
+[179744.586191] RBP: ffffa7e7c12afca8 R08: 0000000000000000 R09: 0000000063823078
+[179744.591233] R10: ffffd1b081e36cc0 R11: 0000000000000215 R12: 0000000000000000
+[179744.595723] R13: ffffa7e7c12afdf8 R14: ffff95e9cdb2a738 R15: ffff95e9e5329000
+[179744.600314] FS:  00007f3487362080(0000) GS:ffff95e9ffc00000(0000) knlGS:0000000000000000
+[179744.605229] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[179744.609322] CR2: 0000000000000000 CR3: 000000007b2f8006 CR4: 00000000000606f0
+[179744.614407] Call Trace:
+[179744.618366]  trailing_symlink+0x165/0x220
+[179744.621850]  path_openat+0xd1/0x18b0
+[179744.625769]  ? make_kgid+0x17/0x20
+[179744.628450]  do_filp_open+0x9b/0x110
+[179744.631827]  ? cp_new_stat+0x152/0x180
+[179744.634953]  do_sys_open+0x1ba/0x2c0
+[179744.637535]  ? do_sys_open+0x1ba/0x2c0
+[179744.640216]  SyS_openat+0x14/0x20
+[179744.643833]  do_syscall_64+0x73/0x130
+[179744.646861]  entry_SYSCALL_64_after_hwframe+0x41/0xa6
+[179744.651736] RIP: 0033:0x7f3486aa9e1b
+[179744.654217] RSP: 002b:00007ffccd58c260 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+[179744.658787] RAX: ffffffffffffffda RBX: 0000557f37da8f80 RCX: 00007f3486aa9e1b
+[179744.663139] RDX: 0000000000000000 RSI: 0000557f37da8f80 RDI: 00000000ffffff9c
+[179744.670839] RBP: 0000557f37d80024 R08: 0000557f37d81db0 R09: 0000000000000040
+[179744.675484] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+[179744.680200] R13: 000000000000001e R14: 0000557f37d7ffe0 R15: 0000557f37d81db0
+[179744.685616] Code:  Bad RIP value.
+[179744.687978] RIP:           (null) RSP: ffffa7e7c12afc70
+[179744.691713] CR2: 0000000000000000
+[179744.694163] ---[ end trace a8737e517d95f7cd ]---
+[179832.817502] BUG: unable to handle kernel NULL pointer dereference at 0000000000000000
+[179832.822292] IP:           (null)
+[179832.825626] PGD 0 P4D 0 
+[179832.827950] Oops: 0010 [#3] SMP PTI
+[179832.830890] Modules linked in: ufs msdos xfs vboxsf isofs binfmt_misc crct10dif_pclmul crc32_pclmul ghash_clmulni_intel input_leds serio_raw video vboxguest sch_fq_codel ib_iser rdma_cm iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi aesni_intel aes_x86_64 scsi_transport_spi crypto_simd cryptd mptscsih glue_helper mptbase psmouse e1000
+[179832.859332] CPU: 1 PID: 13945 Comm: git Tainted: G      D          4.15.0-194-generic #205-Ubuntu
+[179832.864592] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[179832.870576] RIP: 0010:          (null)
+[179832.873282] RSP: 0018:ffffa7e7c12afc70 EFLAGS: 00010246
+[179832.876837] RAX: ffffffffc07d24c0 RBX: ffffa7e7c12afd90 RCX: 0000000000000000
+[179832.881600] RDX: ffffa7e7c12afdf8 RSI: ffff95e9cdb2a738 RDI: ffff95e9e5329000
+[179832.887109] RBP: ffffa7e7c12afca8 R08: 0000000000000000 R09: 00000000638230d0
+[179832.891924] R10: ffffd1b080fe8bc0 R11: 000000000000007c R12: 0000000000000000
+[179832.896666] R13: ffffa7e7c12afdf8 R14: ffff95e9cdb2a738 R15: ffff95e9e5329000
+[179832.901424] FS:  00007fdf6ead4080(0000) GS:ffff95e9ffd00000(0000) knlGS:0000000000000000
+[179832.906747] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[179832.913092] CR2: 0000000000000000 CR3: 000000004cdd6003 CR4: 00000000000606e0
+[179832.917566] Call Trace:
+[179832.919474]  trailing_symlink+0x165/0x220
+[179832.923369]  path_openat+0xd1/0x18b0
+[179832.925954]  ? make_kgid+0x17/0x20
+[179832.928522]  do_filp_open+0x9b/0x110
+[179832.931133]  ? cp_new_stat+0x152/0x180
+[179832.933763]  do_sys_open+0x1ba/0x2c0
+[179832.936300]  ? do_sys_open+0x1ba/0x2c0
+[179832.940106]  SyS_openat+0x14/0x20
+[179832.942557]  do_syscall_64+0x73/0x130
+[179832.945194]  entry_SYSCALL_64_after_hwframe+0x41/0xa6
+[179832.948520] RIP: 0033:0x7fdf6e21be1b
+[179832.950969] RSP: 002b:00007ffccd959400 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+[179832.955536] RAX: ffffffffffffffda RBX: 0000564e1ab40130 RCX: 00007fdf6e21be1b
+[179832.959896] RDX: 0000000000000000 RSI: 0000564e1ab40130 RDI: 00000000ffffff9c
+[179832.964244] RBP: 0000564e1ab368d4 R08: 0000564e1ab38db0 R09: 0000000000000040
+[179832.968615] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+[179832.973958] R13: 000000000000001e R14: 0000564e1ab36890 R15: 0000564e1ab38db0
+[179832.978389] Code:  Bad RIP value.
+[179832.980794] RIP:           (null) RSP: ffffa7e7c12afc70
+[179832.984140] CR2: 0000000000000000
+[179832.986716] ---[ end trace a8737e517d95f7ce ]---
+[179840.619686] BUG: unable to handle kernel NULL pointer dereference at 0000000000000000
+[179840.624498] IP:           (null)
+[179840.626786] PGD 0 P4D 0 
+[179840.628744] Oops: 0010 [#4] SMP PTI
+[179840.631206] Modules linked in: ufs msdos xfs vboxsf isofs binfmt_misc crct10dif_pclmul crc32_pclmul ghash_clmulni_intel input_leds serio_raw video vboxguest sch_fq_codel ib_iser rdma_cm iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi aesni_intel aes_x86_64 scsi_transport_spi crypto_simd cryptd mptscsih glue_helper mptbase psmouse e1000
+[179840.660591] CPU: 0 PID: 13951 Comm: git Tainted: G      D          4.15.0-194-generic #205-Ubuntu
+[179840.666293] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[179840.672115] RIP: 0010:          (null)
+[179840.674745] RSP: 0018:ffffa7e7c1357c70 EFLAGS: 00010246
+[179840.678324] RAX: ffffffffc07d24c0 RBX: ffffa7e7c1357d90 RCX: 0000000000000000
+[179840.682731] RDX: ffffa7e7c1357df8 RSI: ffff95e9cdb2a738 RDI: ffff95e9e5329000
+[179840.687079] RBP: ffffa7e7c1357ca8 R08: 0000000000000000 R09: 00000000638230d8
+[179840.692195] R10: ffffd1b080feb000 R11: 0000000000000386 R12: 0000000000000000
+[179840.696511] R13: ffffa7e7c1357df8 R14: ffff95e9cdb2a738 R15: ffff95e9e5329000
+[179840.700979] FS:  00007ff332be6080(0000) GS:ffff95e9ffc00000(0000) knlGS:0000000000000000
+[179840.705943] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[179840.709607] CR2: 0000000000000000 CR3: 0000000078c5e003 CR4: 00000000000606f0
+[179840.714525] Call Trace:
+[179840.716451]  trailing_symlink+0x165/0x220
+[179840.719194]  path_openat+0xd1/0x18b0
+[179840.721706]  ? make_kgid+0x17/0x20
+[179840.724593]  do_filp_open+0x9b/0x110
+[179840.727034]  ? cp_new_stat+0x152/0x180
+[179840.729593]  do_sys_open+0x1ba/0x2c0
+[179840.732057]  ? do_sys_open+0x1ba/0x2c0
+[179840.734612]  SyS_openat+0x14/0x20
+[179840.736939]  do_syscall_64+0x73/0x130
+[179840.739450]  entry_SYSCALL_64_after_hwframe+0x41/0xa6
+[179840.742675] RIP: 0033:0x7ff33232de1b
+[179840.745599] RSP: 002b:00007ffc185792a0 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+[179840.750218] RAX: ffffffffffffffda RBX: 000055c0b9109130 RCX: 00007ff33232de1b
+[179840.754679] RDX: 0000000000000000 RSI: 000055c0b9109130 RDI: 00000000ffffff9c
+[179840.759132] RBP: 000055c0b90ff8d4 R08: 000055c0b9101db0 R09: 0000000000000040
+[179840.763586] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+[179840.768046] R13: 000000000000001e R14: 000055c0b90ff890 R15: 000055c0b9101db0
+[179840.772505] Code:  Bad RIP value.
+[179840.774882] RIP:           (null) RSP: ffffa7e7c1357c70
+[179840.778263] CR2: 0000000000000000
+[179840.780757] ---[ end trace a8737e517d95f7cf ]---

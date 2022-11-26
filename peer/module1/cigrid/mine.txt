@@ -1,1 +1,1 @@
-GFundDef(TInt, "if_then_dangeling_else", {(TInt,"x")}, SScope({SIf(EBinOp(>, EVar("x"), EInt(0)), SIf(EBinOp(<, EVar("x"), EInt(10)), SReturn(EBinOp(+, EVar("x"), EInt(1))), SReturn(EBinOp(+, EVar("x"), EInt(2))))),SReturn(EVar("x"))})) 
+int a0 = 1
