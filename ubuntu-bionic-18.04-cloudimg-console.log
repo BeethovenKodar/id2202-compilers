@@ -314,3 +314,83 @@
 [208307.218010] RIP:           (null) RSP: ffffa7e7c160fc70
 [208307.221630] CR2: 0000000000000000
 [208307.224305] ---[ end trace a8737e517d95f7d0 ]---
+[208911.226873] main-asm[19853]: segfault at 246 ip 00007fd314c49461 sp 00007ffe9bb70a40 error 4 in libc-2.27.so[7fd314abb000+1e7000]
+[208927.981324] main-asm[19867]: segfault at 246 ip 00007fb4f1221461 sp 00007fffa1c7db10 error 4 in libc-2.27.so[7fb4f1093000+1e7000]
+[209896.037665] BUG: unable to handle kernel NULL pointer dereference at 0000000000000000
+[209896.042821] IP:           (null)
+[209896.045102] PGD 0 P4D 0 
+[209896.047027] Oops: 0010 [#6] SMP PTI
+[209896.049871] Modules linked in: ufs msdos xfs vboxsf isofs binfmt_misc crct10dif_pclmul crc32_pclmul ghash_clmulni_intel input_leds serio_raw video vboxguest sch_fq_codel ib_iser rdma_cm iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi aesni_intel aes_x86_64 scsi_transport_spi crypto_simd cryptd mptscsih glue_helper mptbase psmouse e1000
+[209896.078062] CPU: 0 PID: 19923 Comm: git Tainted: G      D          4.15.0-194-generic #205-Ubuntu
+[209896.083364] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[209896.088748] RIP: 0010:          (null)
+[209896.091390] RSP: 0018:ffffa7e7c0d7bc70 EFLAGS: 00010246
+[209896.094725] RAX: ffffffffc07d24c0 RBX: ffffa7e7c0d7bd90 RCX: 0000000000000000
+[209896.100090] RDX: ffffa7e7c0d7bdf8 RSI: ffff95e9cdb2a738 RDI: ffff95e9e5329000
+[209896.104641] RBP: ffffa7e7c0d7bca8 R08: 0000000000000000 R09: ffff95e9e5329000
+[209896.109091] R10: ffffd1b080fe8bc0 R11: 000000000000004f R12: 0000000000000000
+[209896.116738] R13: ffffa7e7c0d7bdf8 R14: ffff95e9cdb2a738 R15: ffff95e9e5329000
+[209896.121332] FS:  00007fae70bd1080(0000) GS:ffff95e9ffc00000(0000) knlGS:0000000000000000
+[209896.126430] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[209896.130055] CR2: 0000000000000000 CR3: 000000007b128006 CR4: 00000000000606f0
+[209896.135498] Call Trace:
+[209896.137546]  trailing_symlink+0x165/0x220
+[209896.140670]  path_openat+0xd1/0x18b0
+[209896.143281]  ? make_kgid+0x17/0x20
+[209896.145797]  do_filp_open+0x9b/0x110
+[209896.148870]  ? cp_new_stat+0x152/0x180
+[209896.151655]  do_sys_open+0x1ba/0x2c0
+[209896.154242]  ? do_sys_open+0x1ba/0x2c0
+[209896.156898]  SyS_openat+0x14/0x20
+[209896.159284]  do_syscall_64+0x73/0x130
+[209896.161845]  entry_SYSCALL_64_after_hwframe+0x41/0xa6
+[209896.165172] RIP: 0033:0x7fae70318e1b
+[209896.168623] RSP: 002b:00007ffe4facf450 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+[209896.173269] RAX: ffffffffffffffda RBX: 0000559d6989edb0 RCX: 00007fae70318e1b
+[209896.177783] RDX: 0000000000000000 RSI: 0000559d6989edb0 RDI: 00000000ffffff9c
+[209896.183229] RBP: 0000559d698763b4 R08: 0000559d69877ec0 R09: 0000000000000040
+[209896.187898] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+[209896.192614] R13: 000000000000001e R14: 0000559d69876370 R15: 0000559d69877ec0
+[209896.197110] Code:  Bad RIP value.
+[209896.199546] RIP:           (null) RSP: ffffa7e7c0d7bc70
+[209896.203251] CR2: 0000000000000000
+[209896.205965] ---[ end trace a8737e517d95f7d1 ]---
+[209940.683386] BUG: unable to handle kernel NULL pointer dereference at 0000000000000000
+[209940.688174] IP:           (null)
+[209940.691457] PGD 0 P4D 0 
+[209940.693416] Oops: 0010 [#7] SMP PTI
+[209940.697146] Modules linked in: ufs msdos xfs vboxsf isofs binfmt_misc crct10dif_pclmul crc32_pclmul ghash_clmulni_intel input_leds serio_raw video vboxguest sch_fq_codel ib_iser rdma_cm iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi aesni_intel aes_x86_64 scsi_transport_spi crypto_simd cryptd mptscsih glue_helper mptbase psmouse e1000
+[209940.723972] CPU: 0 PID: 19935 Comm: git Tainted: G      D          4.15.0-194-generic #205-Ubuntu
+[209940.729447] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[209940.734569] RIP: 0010:          (null)
+[209940.737199] RSP: 0018:ffffa7e7c0db3c70 EFLAGS: 00010246
+[209940.740582] RAX: ffffffffc07d24c0 RBX: ffffa7e7c0db3d90 RCX: 0000000000000000
+[209940.745106] RDX: ffffa7e7c0db3df8 RSI: ffff95e9cdb2a738 RDI: ffff95e9e5329000
+[209940.749589] RBP: ffffa7e7c0db3ca8 R08: 0000000000000000 R09: ffff95e9e5329000
+[209940.754081] R10: ffffd1b080c2a240 R11: 0000000000000238 R12: 0000000000000000
+[209940.758579] R13: ffffa7e7c0db3df8 R14: ffff95e9cdb2a738 R15: ffff95e9e5329000
+[209940.763045] FS:  00007fa44ef2d080(0000) GS:ffff95e9ffc00000(0000) knlGS:0000000000000000
+[209940.768072] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[209940.771753] CR2: 0000000000000000 CR3: 00000000622fa006 CR4: 00000000000606f0
+[209940.776314] Call Trace:
+[209940.778253]  trailing_symlink+0x165/0x220
+[209940.781031]  path_openat+0xd1/0x18b0
+[209940.783586]  ? make_kgid+0x17/0x20
+[209940.786024]  do_filp_open+0x9b/0x110
+[209940.788574]  ? cp_new_stat+0x152/0x180
+[209940.791215]  do_sys_open+0x1ba/0x2c0
+[209940.793760]  ? do_sys_open+0x1ba/0x2c0
+[209940.796383]  SyS_openat+0x14/0x20
+[209940.798823]  do_syscall_64+0x73/0x130
+[209940.801922]  entry_SYSCALL_64_after_hwframe+0x41/0xa6
+[209940.805347] RIP: 0033:0x7fa44e674e1b
+[209940.807822] RSP: 002b:00007ffdfdb55360 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+[209940.812467] RAX: ffffffffffffffda RBX: 000055b64c49ddb0 RCX: 00007fa44e674e1b
+[209940.817777] RDX: 0000000000000000 RSI: 000055b64c49ddb0 RDI: 00000000ffffff9c
+[209940.822255] RBP: 000055b64c4753b4 R08: 000055b64c476ec0 R09: 0000000000000040
+[209940.826724] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+[209940.831214] R13: 000000000000001e R14: 000055b64c475370 R15: 000055b64c476ec0
+[209940.836129] Code:  Bad RIP value.
+[209940.838496] RIP:           (null) RSP: ffffa7e7c0db3c70
+[209940.841908] CR2: 0000000000000000
+[209940.844423] ---[ end trace a8737e517d95f7d2 ]---
