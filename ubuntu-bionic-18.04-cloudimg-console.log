@@ -195,3 +195,122 @@
 [179840.774882] RIP:           (null) RSP: ffffa7e7c1357c70
 [179840.778263] CR2: 0000000000000000
 [179840.780757] ---[ end trace a8737e517d95f7cf ]---
+[181694.417868] main-asm[14281]: segfault at 74636160 ip 00007f082b746487 sp 00007ffe9e724620 error 4 in libc-2.27.so[7f082b5b8000+1e7000]
+[183230.580264] main-asm[14512]: segfault at 20 ip 00007f832cdbd487 sp 00007ffde380d1d0 error 4 in libc-2.27.so[7f832cc2f000+1e7000]
+[183268.417804] main-asm[14526]: segfault at 20 ip 00007f560a1d5487 sp 00007ffe963f0060 error 4 in libc-2.27.so[7f560a047000+1e7000]
+[183295.167881] main-asm[14540]: segfault at 20 ip 00007f437671b487 sp 00007ffc027e2480 error 4 in libc-2.27.so[7f437658d000+1e7000]
+[183305.490632] main-asm[14554]: segfault at 20 ip 00007fa0ae7d9487 sp 00007ffe7c12d0d0 error 4 in libc-2.27.so[7fa0ae64b000+1e7000]
+[183544.685678] main-asm[14618]: segfault at 60 ip 00007fb08725a487 sp 00007ffcf4c50340 error 4 in libc-2.27.so[7fb0870cc000+1e7000]
+[183580.404600] main-asm[14632]: segfault at 60 ip 00007f9781b2f487 sp 00007ffe61758520 error 4 in libc-2.27.so[7f97819a1000+1e7000]
+[183736.927597] 51:03:34.905534 timesync vgsvcTimeSyncWorker: Radical host time change: 12 440 286 000 000ns (HostNow=1 669 492 930 710 000 000 ns HostLast=1 669 480 490 424 000 000 ns)
+[183746.961826] 51:03:44.940767 timesync vgsvcTimeSyncWorker: Radical guest time change: 12 474 202 340 000ns (GuestNow=1 669 492 940 750 011 000 ns GuestLast=1 669 480 466 547 671 000 ns fSetTimeLastLoop=true )
+[183869.406430] main-asm[14726]: segfault at 4 ip 00007f27ba4c8461 sp 00007fff800532f0 error 4 in libc-2.27.so[7f27ba33a000+1e7000]
+[183872.271250] main-asm[14728]: segfault at 3 ip 00007fcdfbcde461 sp 00007fff18f4bb10 error 4 in libc-2.27.so[7fcdfbb50000+1e7000]
+[183890.736225] main-asm[14742]: segfault at 3 ip 0000000000400550 sp 00007ffd538ed1e8 error 4 in main-asm[400000+1000]
+[183902.709347] main-asm[14756]: segfault at 3 ip 0000000000400550 sp 00007ffc0505b2e8 error 4 in main-asm[400000+1000]
+[183917.382353] main-asm[14770]: segfault at 3 ip 0000000000400550 sp 00007fff8b5f5f38 error 6 in main-asm[400000+1000]
+[183931.009744] main-asm[14784]: segfault at 3 ip 0000000000400550 sp 00007ffcda73a6d8 error 6 in main-asm[400000+1000]
+[183994.424747] main-asm[14807]: segfault at 3 ip 0000000000400550 sp 00007ffdd26f1448 error 4 in main-asm[400000+1000]
+[184002.912635] main-asm[14810]: segfault at 3 ip 0000000000400550 sp 00007ffdb5aa78e8 error 4 in main-asm[400000+1000]
+[184289.681566] main-asm[14825]: segfault at 3 ip 0000000000400550 sp 00007fffc8e08218 error 4 in main-asm[400000+1000]
+[184300.706585] main-asm[14840]: segfault at 3 ip 0000000000400550 sp 00007ffd79d33ee8 error 4 in main-asm[400000+1000]
+[184313.037563] main-asm[14854]: segfault at 3 ip 0000000000400550 sp 00007ffcf30bb5e8 error 4 in main-asm[400000+1000]
+[184356.447427] main-asm[14868]: segfault at 3 ip 0000000000400550 sp 00007ffdd5106358 error 4 in main-asm[400000+1000]
+[184364.074312] main-asm[14882]: segfault at 3 ip 00007f411c7d77a2 sp 00007ffda02c1a88 error 4 in libc-2.27.so[7f411c759000+1e7000]
+[184380.228563] main-asm[14896]: segfault at 3 ip 00007f43d06b47a2 sp 00007ffdcd612fb8 error 4 in libc-2.27.so[7f43d0636000+1e7000]
+[184451.904428] main-asm[14925]: segfault at 3 ip 0000000000400550 sp 00007fffc84d9118 error 4 in main-asm[400000+1000]
+[184986.527146] main-asm[14996]: segfault at 60 ip 00007f1e2ed18487 sp 00007fff54529370 error 4 in libc-2.27.so[7f1e2eb8a000+1e7000]
+[184996.866449] main-asm[15010]: segfault at 60 ip 00007fd6edfe2487 sp 00007fffd988d760 error 4 in libc-2.27.so[7fd6ede54000+1e7000]
+[185178.142298] main-asm[15036]: segfault at 305c60 ip 00007ff771f73487 sp 00007ffcc266bb50 error 4 in libc-2.27.so[7ff771de5000+1e7000]
+[185194.245913] main-asm[15050]: segfault at 305c60 ip 00007faa6d8e2487 sp 00007ffef2a57ef0 error 4 in libc-2.27.so[7faa6d754000+1e7000]
+[186682.385674] main-asm[15309]: segfault at 1 ip 00007fe9e99627a2 sp 00007fffa987d018 error 4 in libc-2.27.so[7fe9e98e4000+1e7000]
+[186861.721422] main-asm[15341]: segfault at 20 ip 00007f473a1f6487 sp 00007fff5661bfb0 error 4 in libc-2.27.so[7f473a068000+1e7000]
+[186931.036488] main-asm[15364]: segfault at 33 ip 0000000000400553 sp 00007fffce562d38 error 4 in main-asm[400000+1000]
+[186980.691279] main-asm[15379]: segfault at 33 ip 0000000000400556 sp 00007ffe72fd2a38 error 4 in main-asm[400000+1000]
+[187140.022352] main-asm[15394]: segfault at 3 ip 0000000000400553 sp 00007ffe39999f18 error 6 in main-asm[400000+1000]
+[187155.271464] main-asm[15408]: segfault at 3 ip 0000000000400553 sp 00007ffd6cde8ee8 error 6 in main-asm[400000+1000]
+[187467.485198] main-asm[15423]: segfault at 3 ip 0000000000400550 sp 00007fff2a572ef8 error 6 in main-asm[400000+1000]
+[187734.686703] main-asm[15451]: segfault at 3 ip 000000000040054c sp 00007ffe53d52728 error 6 in main-asm[400000+1000]
+[187810.152195] main-asm[15493]: segfault at 12 ip 00007efd0e62c461 sp 00007ffd75426290 error 4 in libc-2.27.so[7efd0e49e000+1e7000]
+[187819.909433] main-asm[15507]: segfault at 3612 ip 00007f61888fa461 sp 00007ffec49324d0 error 4 in libc-2.27.so[7f618876c000+1e7000]
+[187834.192670] main-asm[15521]: segfault at 12 ip 00007f0184290461 sp 00007ffc2bbf71b0 error 4 in libc-2.27.so[7f0184102000+1e7000]
+[187869.504860] traps: main-asm[15536] general protection ip:7fed5e176487 sp:7fff7afb0c70 error:0 in libc-2.27.so[7fed5dfe8000+1e7000]
+[187983.176923] main-asm[15578]: segfault at 7614 ip 00007f8d28685461 sp 00007ffe71cc6ea0 error 4 in libc-2.27.so[7f8d284f7000+1e7000]
+[187996.390383] main-asm[15592]: segfault at 9614 ip 00007f15d619b461 sp 00007ffcfe4c82f0 error 4 in libc-2.27.so[7f15d600d000+1e7000]
+[188060.525593] main-asm[15615]: segfault at 14 ip 00007f9b14599461 sp 00007ffd73324e20 error 4 in libc-2.27.so[7f9b1440b000+1e7000]
+[188170.041819] main-asm[15681]: segfault at 14 ip 00007f4071b31461 sp 00007ffc6d744a80 error 4 in libc-2.27.so[7f40719a3000+1e7000]
+[188205.490769] main-asm[15704]: segfault at 0 ip 00007f11a88af461 sp 00007ffe4e2c9e70 error 4 in libc-2.27.so[7f11a8721000+1e7000]
+[189193.019088] main-asm[15735]: segfault at 3 ip 00007fc01f81a461 sp 00007fff47c86460 error 4 in libc-2.27.so[7fc01f68c000+1e7000]
+[189303.961761] main-asm[15776]: segfault at 15 ip 00007fc2d04b5461 sp 00007ffd8d257ee0 error 4 in libc-2.27.so[7fc2d0327000+1e7000]
+[189313.503010] main-asm[15790]: segfault at 35317820 ip 00007fbb02c1a487 sp 00007ffdec1e68d0 error 4 in libc-2.27.so[7fbb02a8c000+1e7000]
+[189318.910592] main-asm[15804]: segfault at 3520 ip 00007fc9e8fbe487 sp 00007fffb04010f0 error 4 in libc-2.27.so[7fc9e8e30000+1e7000]
+[189324.765588] main-asm[15818]: segfault at 305c3520 ip 00007f19fcbc4487 sp 00007ffc95bcd280 error 4 in libc-2.27.so[7f19fca36000+1e7000]
+[189333.115914] main-asm[15832]: segfault at 41 ip 00007f084951c461 sp 00007ffef87d8260 error 4 in libc-2.27.so[7f084938e000+1e7000]
+[189338.172450] main-asm[15846]: segfault at 4 ip 00007fb49fb09461 sp 00007ffd922bcfa0 error 4 in libc-2.27.so[7fb49f97b000+1e7000]
+[189383.779536] main-asm[15869]: segfault at 3 ip 00007f369147c461 sp 00007ffd75a219c0 error 4 in libc-2.27.so[7f36912ee000+1e7000]
+[189417.865420] main-asm[15901]: segfault at 3 ip 00007fa36d10d461 sp 00007fffb663bfb0 error 4 in libc-2.27.so[7fa36cf7f000+1e7000]
+[189436.546320] main-asm[15924]: segfault at 3 ip 00007fa1a0eb0461 sp 00007fff20cdb120 error 4 in libc-2.27.so[7fa1a0d22000+1e7000]
+[190420.818882] main-asm[16060]: segfault at 12 ip 00007f2adf1e5461 sp 00007fff947deaa0 error 4 in libc-2.27.so[7f2adf057000+1e7000]
+[191009.759942] traps: main-asm[16245] general protection ip:7f09400cf487 sp:7fff8399fe10 error:0 in libc-2.27.so[7f093ff41000+1e7000]
+[191262.390679] main-asm[16307]: segfault at 0 ip 00007fd36a3c4461 sp 00007ffc55484590 error 4 in libc-2.27.so[7fd36a236000+1e7000]
+[191299.713924] main-asm[16343]: segfault at 99476000060 ip 00007fe08c44f487 sp 00007ffd017c7ba0 error 4 in libc-2.27.so[7fe08c2c1000+1e7000]
+[191374.346101] main-asm[16367]: segfault at 0 ip 00007f64f6bbb461 sp 00007fffa10f8920 error 4 in libc-2.27.so[7f64f6a2d000+1e7000]
+[191386.818595] main-asm[16381]: segfault at 305c65 ip 0000000000400575 sp 00007ffc2da79d48 error 4 in main-asm[400000+1000]
+[194557.428258] e1000: enp0s3 NIC Link is Down
+[194562.811061] 54:04:06.178908 timesync vgsvcTimeSyncWorker: Radical host time change: 44 988 598 000 000ns (HostNow=1 669 548 774 628 000 000 ns HostLast=1 669 503 786 030 000 000 ns)
+[194563.501219] e1000: enp0s3 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
+[194572.924116] 54:04:16.296382 timesync vgsvcTimeSyncWorker: Radical guest time change: 45 022 805 392 000ns (GuestNow=1 669 548 784 769 507 000 ns GuestLast=1 669 503 761 964 115 000 ns fSetTimeLastLoop=true )
+[195573.347972] main-asm[17094]: segfault at 3 ip 000000000040057a sp 00007ffdee170148 error 6 in main-asm[400000+1000]
+[195695.004329] main-asm[17117]: segfault at 3 ip 000000000040057c sp 00007ffe2eb25f18 error 6 in main-asm[400000+1000]
+[196097.250564] main-asm[17187]: segfault at 3 ip 00007f30a297c461 sp 00007ffe1ef469a0 error 4 in libc-2.27.so[7f30a27ee000+1e7000]
+[196109.836928] main-asm[17201]: segfault at 3 ip 00007eff6cf4d461 sp 00007ffc84772f70 error 4 in libc-2.27.so[7eff6cdbf000+1e7000]
+[196174.979914] main-asm[17251]: segfault at 12 ip 00007f7fe3f50461 sp 00007ffdf5aa5fd0 error 4 in libc-2.27.so[7f7fe3dc2000+1e7000]
+[200389.200592] main-asm[17719]: segfault at 1 ip 00007fa7d7bd1461 sp 00007ffd13b01380 error 4 in libc-2.27.so[7fa7d7a43000+1e7000]
+[200603.251845] main-asm[17760]: segfault at 1 ip 00007feeab52e461 sp 00007fff541c14a0 error 4 in libc-2.27.so[7feeab3a0000+1e7000]
+[201084.861422] main-asm[17879]: segfault at 48 ip 00007ff6ed56f461 sp 00007ffc3e4142d0 error 4 in libc-2.27.so[7ff6ed3e1000+1e7000]
+[201312.185775] main-asm[17894]: segfault at 48 ip 00007f65f9b13461 sp 00007ffc65fef710 error 4 in libc-2.27.so[7f65f9985000+1e7000]
+[201375.324770] traps: main-asm[17939] general protection ip:7f7f18bb9dee sp:7ffdee0311e8 error:0 in libc-2.27.so[7f7f18b7b000+1e7000]
+[201392.893327] traps: main-asm[17953] general protection ip:7f32c8bc9dee sp:7ffcccf52038 error:0 in libc-2.27.so[7f32c8b8b000+1e7000]
+[201395.628535] traps: main-asm[17967] general protection ip:7f8f8bbf0dee sp:7ffeef5d5d18 error:0 in libc-2.27.so[7f8f8bbb2000+1e7000]
+[201424.981973] main-asm[17998]: segfault at 75 ip 00007f82881be1d0 sp 00007ffc5e96ad20 error 4 in libc-2.27.so[7f8288136000+1e7000]
+[202522.786646] main-asm[18115]: segfault at 0 ip 00000000004005a3 sp 00007fff074e21f8 error 4 in main-asm[400000+1000]
+[206572.846892] main-asm[19254]: segfault at 6369676160 ip 00007f41f48af487 sp 00007ffeff648000 error 4 in libc-2.27.so[7f41f4721000+1e7000]
+[208307.043180] BUG: unable to handle kernel NULL pointer dereference at 0000000000000000
+[208307.048517] IP:           (null)
+[208307.050865] PGD 0 P4D 0 
+[208307.052839] Oops: 0010 [#5] SMP PTI
+[208307.055382] Modules linked in: ufs msdos xfs vboxsf isofs binfmt_misc crct10dif_pclmul crc32_pclmul ghash_clmulni_intel input_leds serio_raw video vboxguest sch_fq_codel ib_iser rdma_cm iw_cm ib_cm ib_core iscsi_tcp libiscsi_tcp libiscsi scsi_transport_iscsi ip_tables x_tables autofs4 btrfs zstd_compress raid10 raid456 async_raid6_recov async_memcpy async_pq async_xor async_tx xor raid6_pq libcrc32c raid1 raid0 multipath linear mptspi aesni_intel aes_x86_64 scsi_transport_spi crypto_simd cryptd mptscsih glue_helper mptbase psmouse e1000
+[208307.084502] CPU: 0 PID: 19680 Comm: git Tainted: G      D          4.15.0-194-generic #205-Ubuntu
+[208307.089934] Hardware name: innotek GmbH VirtualBox/VirtualBox, BIOS VirtualBox 12/01/2006
+[208307.094962] RIP: 0010:          (null)
+[208307.097591] RSP: 0018:ffffa7e7c160fc70 EFLAGS: 00010246
+[208307.100996] RAX: ffffffffc07d24c0 RBX: ffffa7e7c160fd90 RCX: 0000000000000000
+[208307.105472] RDX: ffffa7e7c160fdf8 RSI: ffff95e9cdb2a738 RDI: ffff95e9e5329000
+[208307.109967] RBP: ffffa7e7c160fca8 R08: 0000000000000000 R09: ffff95e9e5329000
+[208307.114870] R10: ffffd1b081e88280 R11: 00000000000002ac R12: 0000000000000000
+[208307.119269] R13: ffffa7e7c160fdf8 R14: ffff95e9cdb2a738 R15: ffff95e9e5329000
+[208307.124088] FS:  00007f3939256080(0000) GS:ffff95e9ffc00000(0000) knlGS:0000000000000000
+[208307.128992] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[208307.134066] CR2: 0000000000000000 CR3: 000000003fa66002 CR4: 00000000000606f0
+[208307.139858] Call Trace:
+[208307.143437]  trailing_symlink+0x165/0x220
+[208307.147465]  path_openat+0xd1/0x18b0
+[208307.150657]  ? make_kgid+0x17/0x20
+[208307.153367]  do_filp_open+0x9b/0x110
+[208307.156597]  ? cp_new_stat+0x152/0x180
+[208307.160206]  do_sys_open+0x1ba/0x2c0
+[208307.162792]  ? do_sys_open+0x1ba/0x2c0
+[208307.165749]  SyS_openat+0x14/0x20
+[208307.168809]  do_syscall_64+0x73/0x130
+[208307.171563]  entry_SYSCALL_64_after_hwframe+0x41/0xa6
+[208307.176507] RIP: 0033:0x7f393899de1b
+[208307.179108] RSP: 002b:00007fffbd0321d0 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+[208307.184127] RAX: ffffffffffffffda RBX: 000055ed8f51ab40 RCX: 00007f393899de1b
+[208307.189158] RDX: 0000000000000000 RSI: 000055ed8f51ab40 RDI: 00000000ffffff9c
+[208307.194017] RBP: 000055ed8f4f2394 R08: 000055ed8f4f3ea0 R09: 0000000000000040
+[208307.199706] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+[208307.204304] R13: 000000000000001e R14: 000055ed8f4f2350 R15: 000055ed8f4f3ea0
+[208307.214465] Code:  Bad RIP value.
+[208307.218010] RIP:           (null) RSP: ffffa7e7c160fc70
+[208307.221630] CR2: 0000000000000000
+[208307.224305] ---[ end trace a8737e517d95f7d0 ]---

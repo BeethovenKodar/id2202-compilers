@@ -51,8 +51,7 @@
 %token <char> CHAR
 %token EOF                    (* SPECIAL CHARACTER *)
 
-// %nonassoc UMINUS
-
+%right NOT TILDE UMINUS
 %left OR
 %left AND
 %left BITOR
