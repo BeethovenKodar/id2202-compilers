@@ -3,15 +3,15 @@ extern int putchar(int character);
 extern int atoi(char * str);
 extern int factorial_message(int n, char* str);
 
-void print_int(int x){
-  if(x < 0){
+void print_int(int x) {
+  if (x < 0) {
     putchar('-');
     x = x * (0 - 1);
   }
   int i = 1000000;
   int b = 0;
-  while(i != 0){
-    if(x >= i || (x == 0 && i == 1) || b > 0){
+  while (i != 0) {
+    if (x >= i || (x == 0 && i == 1) || b > 0) {
       putchar('0' + x / i);
       b = 1;
     }

@@ -37,20 +37,15 @@ main:
 	jne	exit_menu
 	
 	mov		dil, [r10]
-	
 	cmp 	dil, 'e'
 	je 	echo
-	
 	cmp 	dil, 'm'
 	je	magic
-	
 	cmp 	dil, '+'
 	je	addition
-	
 	cmp 	dil, '!'
 	je	factorial
-	
-	jmp exit_menu
+	jmp exit_menu				; command not found
 
 
 echo:
@@ -66,9 +61,69 @@ echo:
 	add		eax, 0
 
 
-magic:
+print_int:
+	mov 	r10, rdi			; rbp = x = provided int
+	cmp 	r10, 0
+	jge		after_neg_check		; x >= 0
+	mov		rdi, '-'
+	push 	r10
+	call 	putchar
+	pop 	r10
+	mov		r11, 0
+	sub		r11, 1				; 'r11' holds (0 - 1)
+	mov		rax, r11			; 'rax' holds -1
+	mul		r10					; x = x * (-1)
+	mov		r10, rax			; move result 'rax' into 'r10'
+	; correct
+after_neg_check:
+	mov		r11, 1000000		; i = 1000000
+	mov		r12, 0				; b = 0
+loop_body:
+	cmp 	r10, r11		
+	jge		if_was_true			; x >= i
+	cmp 	r12, 0				
+	jg		if_was_true			; b > 0
+	cmp		r10, 0
+	jne		after_put_char		; x != 0
+	cmp 	r11, 1
+	jne 	after_put_char		; i != 1
+	jmp		if_was_true			; x == 0 && i == 1
+if_was_true:
+	mov 	rax, r10			; rax = x
+	mov     rdx, 0				; rdx must be zero
+	div		r11					; x (rax) / i (r11)
+	add		rax, '0'			; convert to ascii symbol
+	mov		rdi, rax			; prepare putchar('0' + x / i)
+	push	r10
+	push	r11
+	push	r12
+	call 	putchar
+	pop		r12
+	pop		r11
+	pop		r10
+	mov		r12, 1
+after_put_char:
+	mov		rax, r10			; rax = x
+	mov     rdx, 0 				; rdx must be zero
+	div		r11					; x (rax) / i (r11)
+	mov		r10, rdx			; rem of division is new x (r10)
+	mov		rax, r11			; rax = i
+	mov     rdx, 0	 			; rdx must be zero
+	mov		r13, 10				; denominator 10 in register
+	div		r13					; i = i (rax) / 10 (rbx)
+	mov		r11, rax			; move result to 'r11' (i)
+	cmp 	r11, 0				; while (i != 0)
+	jne		loop_body			; iterate
+; outside_loop:
+	mov		rdi, 0xA			; print newline
+	call 	putchar
 	ret
 
+magic:
+	mov 	rdi, -126
+	call 	print_int
+	mov		rax, 0
+	ret
 
 addition:
 	ret
