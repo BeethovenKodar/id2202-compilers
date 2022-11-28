@@ -59,6 +59,7 @@ echo:
 	call	puts
 	xor 	eax, eax
 	add		eax, 0
+	ret
 
 
 print_int:
