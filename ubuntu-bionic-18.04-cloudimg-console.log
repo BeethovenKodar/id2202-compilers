@@ -527,3 +527,19 @@
 [245803.891846] 68:18:32.745776 timesync vgsvcTimeSyncWorker: Radical host time change: 46 395 381 000 000ns (HostNow=1 669 723 035 492 000 000 ns HostLast=1 669 676 640 111 000 000 ns)
 [245813.912337] 68:18:42.768073 timesync vgsvcTimeSyncWorker: Radical guest time change: 46 395 413 329 000ns (GuestNow=1 669 723 045 519 469 000 ns GuestLast=1 669 676 650 106 140 000 ns fSetTimeLastLoop=true )
 [247695.342083] main-asm[23365]: segfault at 0 ip 00007f16892071a0 sp 00007ffccbdd6f38 error 4 in libc-2.27.so[7f16891c2000+1e7000]
+[248956.917867] main-asm[23570]: segfault at 7ffc3d9daff0 ip 0000000000400607 sp 00007ffc3d9daff8 error 6 in main-asm[400000+1000]
+[248968.594796] main-asm[23587]: segfault at 7fff5e2e0ff8 ip 00000000004005e7 sp 00007fff5e2e1000 error 6 in main-asm[400000+1000]
+[249035.471967] main-asm[23604]: segfault at 7ffe710daff0 ip 0000000000400607 sp 00007ffe710daff8 error 6 in main-asm[400000+1000]
+[249037.640035] main-asm[23621]: segfault at 7ffef5840ff0 ip 0000000000400607 sp 00007ffef5840ff8 error 6 in main-asm[400000+1000]
+[249046.174857] main-asm[23655]: segfault at 7fff93531ff0 ip 0000000000400607 sp 00007fff93531ff8 error 6 in main-asm[400000+1000]
+[249360.420107] main-asm[23753]: segfault at 7ffe94255ff0 ip 0000000000400607 sp 00007ffe94255ff8 error 6 in main-asm[400000+1000]
+[249433.673837] main-asm[23802]: segfault at 7ffda6623ff8 ip 00000000004005e7 sp 00007ffda6624000 error 6 in main-asm[400000+1000]
+[249494.362089] main-asm[23836]: segfault at 0 ip 00007f2e3ab12461 sp 00007fff9ae77538 error 4 in libc-2.27.so[7f2e3a984000+1e7000]
+[249507.501392] main-asm[23853]: segfault at 0 ip 00007ffad24f2461 sp 00007ffe17a09568 error 4 in libc-2.27.so[7ffad2364000+1e7000]
+[249517.089006] traps: main-asm[23870] general protection ip:7fff54612613 sp:7fff54611628 error:0
+[249534.354121] main-asm[23887]: segfault at 7ffe202b1ff0 ip 0000000000400607 sp 00007ffe202b1ff8 error 6 in main-asm[400000+1000]
+[249540.476468] main-asm[23904]: segfault at 7fff5751fff8 ip 00000000004005e7 sp 00007fff57520000 error 6 in main-asm[400000+1000]
+[249558.230001] main-asm[23937]: segfault at 7ffcbad38ff0 ip 0000000000400607 sp 00007ffcbad38ff8 error 6 in main-asm[400000+1000]
+[249714.788636] main-asm[23955]: segfault at 7fff37128ff0 ip 0000000000400607 sp 00007fff37128ff8 error 6 in main-asm[400000+1000]
+[250063.841649] traps: main-asm[24021] general protection ip:7feee9bff1a0 sp:7ffc774c5de0 error:0 in libc-2.27.so[7feee9bba000+1e7000]
+[250067.471736] traps: main-asm[24038] general protection ip:7f07dd2e41a0 sp:7ffee3fa52b0 error:0 in libc-2.27.so[7f07dd29f000+1e7000]

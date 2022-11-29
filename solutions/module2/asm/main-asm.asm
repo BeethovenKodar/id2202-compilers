@@ -4,7 +4,7 @@
 		extern  putchar
         extern  fflush
 		extern 	atoi
-		extern  factorial
+		extern  factorial_message
 
 
         	section .data
@@ -121,8 +121,8 @@ magic:
 	ret
 
 addition:
-	mov 	r10, [rbx + 16]		; 'r10' is pointer to argument 1
-	mov		r11, [rbx + 24] 	; 'r11' is pointer to argument 2
+	mov 	r10, [rbx + 16]		; 'r10' is first term
+	mov		r11, [rbx + 24] 	; 'r11' is second term
 	mov		rdi, r10
 	push	r10
 	push	r11
@@ -137,14 +137,25 @@ addition:
 	pop		r11
 	pop		r10
 	mov 	r11, rax			; save result from atoi(arg2)
-	add		r10, r11
+	add		r10, r11			; add the two results
 	mov		rdi, r10
-	call	print_int
+	call	print_int			; reuse print_int to convert from ascii nums to integer
 	mov		rax, 0
 	ret
 
 
 fact:
+	mov		r10, [rbx + 16]		; 'r10' ptr to factorial integer
+	mov		r11, [rbx + 24] 	; 'r11'	ptr to string
+	mov		rdi, r10
+	push	r11
+	call	atoi
+	pop 	r11
+	mov		rdi, rax
+	mov		rsi, r11
+	call	factorial_message
+	mov		rdi, rax
+	call 	print_int
 	mov		rax, 0
 	ret
 
