@@ -511,3 +511,19 @@
 [238559.662345] RIP:           (null) RSP: ffffa7e7c0cfbc70
 [238559.666098] CR2: 0000000000000000
 [238559.668595] ---[ end trace a8737e517d95f7d4 ]---
+[239220.033512] main-asm[22088]: segfault at a ip 00007f02bc85c1a0 sp 00007ffdcb2a5878 error 4 in libc-2.27.so[7f02bc817000+1e7000]
+[239914.633060] main-asm[22103]: segfault at a ip 00007f42ab2dd1a0 sp 00007ffdc4be02f8 error 4 in libc-2.27.so[7f42ab298000+1e7000]
+[241355.953119] main-asm[22149]: segfault at a ip 00007ff56df951a0 sp 00007ffe83be2748 error 4 in libc-2.27.so[7ff56df50000+1e7000]
+[241962.874120] main-asm[22243]: segfault at ffffffff ip 00007ff1253131a0 sp 00007fff903a4318 error 4 in libc-2.27.so[7ff1252ce000+1e7000]
+[242827.573039] main-asm[22904]: segfault at 2b ip 00007fa8bd16c1a0 sp 00007ffc77cbe9a8 error 4 in libc-2.27.so[7fa8bd127000+1e7000]
+[243268.039627] main-asm[22919]: segfault at 2b ip 00007f6a942441a0 sp 00007ffcf12f47c8 error 4 in libc-2.27.so[7f6a941ff000+1e7000]
+[243719.194665] main-asm[22948]: segfault at 2b ip 00007fae185841a0 sp 00007ffde77b8118 error 4 in libc-2.27.so[7fae1853f000+1e7000]
+[245775.778658] e1000: enp0s3 NIC Link is Down
+[245779.809995] e1000: enp0s3 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
+[245783.833399] 68:18:12.687465 timesync vgsvcTimeSyncWorker: Radical host time change: 5 273 987 000 000ns (HostNow=1 669 676 630 049 000 000 ns HostLast=1 669 671 356 062 000 000 ns)
+[245793.853293] 68:18:22.709215 timesync vgsvcTimeSyncWorker: Radical guest time change: 5 306 326 439 000ns (GuestNow=1 669 676 640 074 752 000 ns GuestLast=1 669 671 333 748 313 000 ns fSetTimeLastLoop=true )
+[245795.966381] e1000: enp0s3 NIC Link is Down
+[245799.997991] e1000: enp0s3 NIC Link is Up 1000 Mbps Full Duplex, Flow Control: RX
+[245803.891846] 68:18:32.745776 timesync vgsvcTimeSyncWorker: Radical host time change: 46 395 381 000 000ns (HostNow=1 669 723 035 492 000 000 ns HostLast=1 669 676 640 111 000 000 ns)
+[245813.912337] 68:18:42.768073 timesync vgsvcTimeSyncWorker: Radical guest time change: 46 395 413 329 000ns (GuestNow=1 669 723 045 519 469 000 ns GuestLast=1 669 676 650 106 140 000 ns fSetTimeLastLoop=true )
+[247695.342083] main-asm[23365]: segfault at 0 ip 00007f16892071a0 sp 00007ffccbdd6f38 error 4 in libc-2.27.so[7f16891c2000+1e7000]

@@ -3,6 +3,8 @@
         extern  puts
 		extern  putchar
         extern  fflush
+		extern 	atoi
+		extern  factorial
 
 
         	section .data
@@ -15,12 +17,6 @@ help_msg5       db      "  +   Adds together arg1 and arg2", 0xA
 help_msg6       db      "  !   Prints out the factorial value of", 0xA
 help_msg7       db      "      arg1, as well as the message in arg2", 0xA, 0
 
-; str				resb	2*64	; 2 pointers of size 64
-
-; place char in 'dil' reg
-; push 	rdi
-; call    putchar			;? output validation
-; pop 	rdi
 
 			section .text
 
@@ -38,13 +34,13 @@ main:
 	
 	mov		dil, [r10]
 	cmp 	dil, 'e'
-	je 	echo
+		je 	echo
 	cmp 	dil, 'm'
-	je	magic
+		je	magic
 	cmp 	dil, '+'
-	je	addition
+		je	addition
 	cmp 	dil, '!'
-	je	factorial
+		je	fact
 	jmp exit_menu				; command not found
 
 
@@ -57,8 +53,7 @@ echo:
 	pop 	r11
 	mov 	rdi, r11
 	call	puts
-	xor 	eax, eax
-	add		eax, 0
+	mov 	eax, 0
 	ret
 
 
@@ -75,7 +70,6 @@ print_int:
 	mov		rax, r11			; 'rax' holds -1
 	mul		r10					; x = x * (-1)
 	mov		r10, rax			; move result 'rax' into 'r10'
-	; correct
 after_neg_check:
 	mov		r11, 1000000		; i = 1000000
 	mov		r12, 0				; b = 0
@@ -113,9 +107,9 @@ after_put_char:
 	mov		r13, 10				; denominator 10 in register
 	div		r13					; i = i (rax) / 10 (rbx)
 	mov		r11, rax			; move result to 'r11' (i)
-	cmp 	r11, 0				; while (i != 0)
-	jne		loop_body			; iterate
-; outside_loop:
+	cmp 	r11, 0
+	jne		loop_body			; if i != 0, iterate
+; -> outside_loop:
 	mov		rdi, 0xA			; print newline
 	call 	putchar
 	ret
@@ -127,16 +121,35 @@ magic:
 	ret
 
 addition:
+	mov 	r10, [rbx + 16]		; 'r10' is pointer to argument 1
+	mov		r11, [rbx + 24] 	; 'r11' is pointer to argument 2
+	mov		rdi, r10
+	push	r10
+	push	r11
+	call	atoi
+	pop		r11
+	pop		r10
+	mov		r10, rax			; save result from atoi(arg1)
+	mov 	rdi, r11
+	push	r10
+	push	r11
+	call	atoi
+	pop		r11
+	pop		r10
+	mov 	r11, rax			; save result from atoi(arg2)
+	add		r10, r11
+	mov		rdi, r10
+	call	print_int
+	mov		rax, 0
 	ret
 
 
-factorial:
+fact:
+	mov		rax, 0
 	ret
 
 exit_menu:	
 	mov     rdi, help_msg
 	call    puts
-	xor	    rdi, rdi		; set rdi to 0
-	call    fflush
 	mov 	eax, 1
 	ret
