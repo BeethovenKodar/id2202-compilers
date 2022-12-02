@@ -1,4 +1,4 @@
-// open Ast_types -> produces error
+
 %{
   open Ast_types
 %}

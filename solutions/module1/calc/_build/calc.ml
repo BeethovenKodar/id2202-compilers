@@ -189,20 +189,14 @@ and lex = function
 let entry_point =
   let rec parse_line token =
     match token with
-    (* | EOFToken ->
+    | EOFToken ->
       exit 0
     | NewLineToken -> (* two newlines -> exit *)
       let next = read_token stdin in
       if (next = EOFToken || next = NewLineToken) then
         exit 0
       else
-        parse_line next *)
-    | EOFToken | NewLineToken -> (* two newlines -> exit *)
-      if token <> EOFToken then begin
-        let next = read_token stdin in
-        if next <> NewLineToken then
-          parse_line next end
-      exit 0  
+        parse_line next
     | _ ->
       let (next, ast_root) = parse_expr token in
       if (next <> EOFToken && next <> NewLineToken) then
@@ -212,4 +206,4 @@ let entry_point =
         let () = printf ("%s\n= %d\n\n") fmt_str num_val in
           parse_line next in
   let next = read_token stdin in
-  parse_line next
+    parse_line next

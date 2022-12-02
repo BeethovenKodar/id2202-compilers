@@ -29,7 +29,7 @@ rule token = parse
   | "char" { TCHAR }
   | "void" { TVOID }
   | "++" { ADDSUGAR }                   (* NORMAL TOKENS *)
-  | '+' { ADD }                         
+  | '+' { ADD }                         (* ambiguity ? *)  
   | "--" { SUBSUGAR }
   | '-' { SUB }
   | '*' { MUL }

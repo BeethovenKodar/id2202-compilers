@@ -1,8 +1,8 @@
 %use altreg
-        global  main
-        extern  puts
+    global  main
+    extern  puts
 		extern  putchar
-        extern  fflush
+    extern  fflush
 		extern 	atoi
 		extern  factorial_message
 
@@ -99,13 +99,13 @@ if_was_true:
 	mov		r12, 1
 after_put_char:
 	mov		rax, r10			; rax = x
-	mov     rdx, 0 				; rdx must be zero
-	div		r11					; x (rax) / i (r11)
+	mov   rdx, 0 				; rdx must be zero
+	div		r11					  ; x (rax) / i (r11)
 	mov		r10, rdx			; rem of division is new x (r10)
 	mov		rax, r11			; rax = i
-	mov     rdx, 0	 			; rdx must be zero
+	mov   rdx, 0	 			; rdx must be zero
 	mov		r13, 10				; denominator 10 in register
-	div		r13					; i = i (rax) / 10 (rbx)
+	div		r13					  ; i = i (rax) / 10 (rbx)
 	mov		r11, rax			; move result to 'r11' (i)
 	cmp 	r11, 0
 	jne		loop_body			; if i != 0, iterate
@@ -160,7 +160,7 @@ fact:
 	ret
 
 exit_menu:	
-	mov     rdi, help_msg
-	call    puts
+	mov   rdi, help_msg
+	call  puts
 	mov 	eax, 1
 	ret

@@ -13,41 +13,49 @@ open Printf
   List.rev (work []) *)
 
 
-let usage_msg = "./cigrid --pretty-print source-file "
-let pretty_print = ref false
+let usage_msg = "./cigrid [--pretty-print] [--ir] [--asm] source-file "
+let pprint_ast = ref false
+let pprint_asm = ref false
+let pprint_ir = ref false
 let input_files = ref []
 let anon_args file = 
-  input_files := file :: !input_files
+  input_files := (file :: !input_files)
 let speclist = 
   [
-    ("--pretty-print", Arg.Set pretty_print, "pretty print the generated ast");
+    ("--pretty-print", Arg.Set pprint_ast, "pretty print the generated ast");
+    ("--asm", Arg.Set pprint_asm, "pretty print the generated x86-64 assembly code");
+    ("--ir", Arg.Set pprint_ir, "pretty print generated ir")
   ]
 
 let _ = (* entry point *)
   try
     Arg.parse_argv Sys.argv speclist anon_args usage_msg;
-
-    if !pretty_print = false then
+    if (!pprint_ast = false && !pprint_asm = false && !pprint_ir = false) then
       exit 0;
-    
     let rec work = function 
-    | [] -> exit 0
+    | [] -> ()
     | (hd::tl) ->
       let lexbuf = Lexing.from_channel (Stdlib.open_in hd) in
-      (* let token_list = get_token_list lexbuf in
-      Printf.printf "%d" (List.length token_list); *)
-      let list_of_ast_globals = 
+      let ast_globals = 
         try
           Parser.program Lexer.token lexbuf
         with
         | Parser.Error ->
           let () = printf "Parse error at line %d\n" (lexbuf.lex_curr_p.pos_lnum) in
           exit 1 
-        in
-      let () = Pprint_ast.p_prog list_of_ast_globals in
-      work tl
-    in work !input_files
+      in
+      let ir = Ast_to_ir.convert ast_globals in
+      let (a, b, c) = Instr_select.convert ir in
+      (if (!pprint_ast = true) then
+        Pprint_ast.p_prog ast_globals;
+      if (!pprint_ir = true) then
+        Pprint_ir.p_ir_func ir;
+      if (!pprint_asm = true) then
+        Pprint_asm.p_block b;);
+    work tl in
+    let () = work !input_files in
+    exit 0
   with
-  Arg.Bad(msg) ->
+  | Arg.Bad(msg) ->
     let () = Printf.printf "%s" msg in
     exit 1

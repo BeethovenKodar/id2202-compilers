@@ -1,7 +1,7 @@
 executable=cigrid
 
 all:
-	dune build && cp _build/default/src/cigrid.exe $(executable)
+	rm -f $(executable) && dune build && cp _build/default/src/cigrid.exe $(executable)
 
 clean:
 	dune clean
