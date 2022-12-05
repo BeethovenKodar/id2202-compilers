@@ -3,6 +3,9 @@ open Ir_types
 open Ast_types
 open Asm_types
 
+(* acc - list of selected instructions *)
+(* env - variables defined in c-program and their mapping to regs *)
+
 let make_reg name env =
   let (n, _) = List.assoc name env in (* lookup key 'name' *)
   Reg(n)
@@ -30,15 +33,17 @@ let rec instr_select_ir_stmts env n acc = function
 | (IRSVarAssign(name, expr)::tl) ->
   let (expr_acc, n2) = instr_select_expr env n [] (make_reg name env) expr in
   instr_select_ir_stmts env n2 (List.rev_append expr_acc acc) tl
-| (IRSReturn(Some _)::_) -> 
-  exit 1
-| (IRSReturn(None)::_) ->
-  exit 1
-  (* (env, n, List.rev acc) *)
+
+let instr_select_blockend env n = function
+| IRSReturn(Some expr) ->
+  instr_select_expr env n [] (TReg(n, "rax")) expr
+| IRSReturn(None) -> ([], n)
 
 let instr_select_block = function
-| IRBlock(_, stmt_l) ->
-  instr_select_ir_stmts [] 0 [] stmt_l
+| IRBlock(_, stmt_l, blockend) ->
+  let (env, n, asm_list) = instr_select_ir_stmts [] 0 [] stmt_l in
+  let (acc, _) = instr_select_blockend env n blockend in
+  Block(List.append asm_list acc, Ret)
 
 (* not sure if there can exist multiple blocks in the same IRFunc *)
 let rec convert = function

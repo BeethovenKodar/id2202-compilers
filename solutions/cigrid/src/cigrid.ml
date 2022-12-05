@@ -27,7 +27,7 @@ let speclist =
     ("--ir", Arg.Set pprint_ir, "pretty print generated ir")
   ]
 
-let _ = (* entry point *)
+let () =
   try
     Arg.parse_argv Sys.argv speclist anon_args usage_msg;
     if (!pprint_ast = false && !pprint_asm = false && !pprint_ir = false) then
@@ -45,13 +45,13 @@ let _ = (* entry point *)
           exit 1 
       in
       let ir = Ast_to_ir.convert ast_globals in
-      let (a, b, c) = Instr_select.convert ir in
+      let block_list = Instr_select.convert ir in
       (if (!pprint_ast = true) then
         Pprint_ast.p_prog ast_globals;
       if (!pprint_ir = true) then
         Pprint_ir.p_ir_func ir;
       if (!pprint_asm = true) then
-        Pprint_asm.p_block b;);
+        Pprint_asm.p_block block_list;);
     work tl in
     let () = work !input_files in
     exit 0

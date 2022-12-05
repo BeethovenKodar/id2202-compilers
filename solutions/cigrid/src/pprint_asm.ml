@@ -8,17 +8,14 @@ let p_bop = function
 | Mov -> "mov"
 
 let p_op = function
-| Reg(reg) -> 
-  sprintf "x_%d" reg
-| TReg(reg, name) ->
-  sprintf "%s_%d" name reg
-| Imm(num) -> 
-  sprintf "%s" (string_of_int num)
+| Reg(reg) -> sprintf "x_%d" reg
+| TReg(_, "rax") -> "rax"
+| TReg(reg, name) -> sprintf "%s_%d" name reg
+| Imm(num) -> sprintf "%s" (string_of_int num)
 
 let p_inst = function
 | BinOp(bop, op1, op2) ->
-  sprintf "%s %s %s" (p_bop bop) (p_op op1) (p_op op2)
-| Ret -> "ret"
+  sprintf "%s\t%s,\t%s" (p_bop bop) (p_op op1) (p_op op2)
 
 let p_blockend = function (* how to fix this, should not be above *)
 | Ret -> "ret"
@@ -26,8 +23,11 @@ let p_blockend = function (* how to fix this, should not be above *)
 let rec p_instr_l = function
 | [] -> ""
 | (inst::tl) ->
-  sprintf "%s %s\n" (p_inst inst) (p_instr_l tl)
+  sprintf "\n%s%s" (p_inst inst) (p_instr_l tl)
 
-let p_block = function
-| Block(inst_l, b_end) ->
-  sprintf "%s\n%s" (p_instr_l inst_l) (p_blockend b_end)
+let rec p_block = function
+| [] -> ()
+| (Block(inst_l, b_end)::tl) ->
+  let str = sprintf "%s\n%s" (p_instr_l inst_l) (p_blockend b_end) in
+  let () = printf "%s\n" str in
+  p_block tl

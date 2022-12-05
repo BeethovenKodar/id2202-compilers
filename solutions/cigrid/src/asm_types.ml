@@ -11,12 +11,11 @@ type op =
 | Reg of reg
 | TReg of reg * string
 
-type inst =
+type instr =
 | BinOp of bop * op * op
-| Ret
 
 type blockend =
 | Ret
 
 type block = 
-| Block of inst list * blockend
+| Block of instr list * blockend

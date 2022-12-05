@@ -3,15 +3,17 @@ open Ir_types
 open Pprint_ast
 open Printf
 
+let p_blockend = function
+| IRSReturn(Some expr) ->
+  sprintf "IRSReturn(%s)" (p_expr expr) 
+| IRSReturn(None) ->
+  "IRSReturn()"
+
 let p_ir_stmt = function
 | IRSVarDecl(name, t) ->
   sprintf "IRSVarDecl(\"%s\", %s)" (name) (p_typ t)
 | IRSVarAssign(name, expr) ->
   sprintf "IRSVarAssign(\"%s\", %s)" (name) (p_expr expr)
-| IRSReturn(Some expr) ->
-  sprintf "IRSReturn(%s)" (p_expr expr) 
-| IRSReturn(None) ->
-  "IRSReturn()"
 
 let rec p_ir_stmt_l = function
 | [] -> "\n\t"
@@ -19,8 +21,8 @@ let rec p_ir_stmt_l = function
   sprintf "\n\t\t%s %s" (p_ir_stmt hd) (p_ir_stmt_l tl)
 
 let p_ir_block = function
-| IRBlock(name, ir_stmt_l) ->
-  sprintf "{\n\tIRBlock({%s, %s})\n}" name (p_ir_stmt_l ir_stmt_l)
+| IRBlock(name, ir_stmt_l, blockend) ->
+  sprintf "{\n\tIRBlock({%s, %s, %s})\n}" name (p_ir_stmt_l ir_stmt_l) (p_blockend blockend)
 
 let rec p_ir_func = function
 | [] -> ()
