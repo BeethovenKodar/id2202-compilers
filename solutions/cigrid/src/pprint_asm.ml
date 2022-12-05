@@ -27,7 +27,7 @@ let rec p_instr_l = function
 
 let rec p_block = function
 | [] -> ()
-| (Block(instr_l, b_end)::tl) ->
+| (Block(_, instr_l, b_end)::tl) ->
   let str = sprintf "%s\n%s" (p_instr_l instr_l) (p_blockend b_end) in
   let () = printf "%s\n" str in
   p_block tl

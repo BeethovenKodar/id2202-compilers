@@ -18,4 +18,4 @@ type blockend =
 | Ret
 
 type block = 
-| Block of instr list * blockend
+| Block of string * instr list * blockend

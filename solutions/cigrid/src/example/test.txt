@@ -1,39 +1,8 @@
-int main(){
-  int x = 1;
-  x = x + 4;
-  return x;
+int main() {
+  int x = 5;
+  int y = 3 + x;
+  int z = x + 2 + y + x;
+  int u = y + z + 5 + x;
+  int v = 3 + u + 0 + z + 0 + (y + y);
+  return v;
 }
-
-
-mov     qword [rsp], 1
-
-mov     r10, qword [rsp]
-mov     qword [rsp + 8], r10
-mov     qword [rsp + 16], 4
-mov     r10, qword [rsp + 8]
-mov     qword [rsp], r10
-mov     r10, qword [rsp + 16]
-add     qword [rsp], r10
-
-
-mov     qword [rsp], 1
-mov     r10, qword [rsp + 8]
-mov     qword [rsp], r10
-mov     qword [rsp + 16], 4
-mov     r10, qword [rsp]
-mov     qword [rsp + 8], r10
-mov     r10, qword [rsp]
-add     qword [rsp + 16], r10
-mov     r10, qword [rsp + 24]
-mov     qword [rsp], r10
-
-mov     qword [rsp], 1
-mov     r10, qword [rsp + 8]
-mov     qword [rsp], r10
-mov     qword [rsp + 16], 4
-mov     r10, qword [rsp + 8]
-mov     qword [rsp], r10
-mov     r10, qword [rsp + 16]
-add     qword [rsp], r10
-mov     r10, qword [rsp + 24]
-mov     qword [rsp], r10

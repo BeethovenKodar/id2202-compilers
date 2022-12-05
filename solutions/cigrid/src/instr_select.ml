@@ -40,10 +40,10 @@ let instr_select_blockend env n = function
 | IRSReturn(None) -> ([], n)
 
 let instr_select_block = function
-| IRBlock(_, stmt_l, blockend) ->
+| IRBlock(name, stmt_l, blockend) ->
   let (env, n, asm_list) = instr_select_ir_stmts [] 0 [] stmt_l in
   let (acc, _) = instr_select_blockend env n blockend in
-  Block(List.append asm_list acc, Ret)
+  Block(name, List.append asm_list acc, Ret)
 
 (* not sure if there can exist multiple blocks in the same IRFunc *)
 let rec convert = function
