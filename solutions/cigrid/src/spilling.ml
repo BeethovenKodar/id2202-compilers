@@ -46,15 +46,20 @@ let bop_mem_imm bop op imm_val curr_offset env =
 
 (* differentiate between <mem, mem> and <imm, mem> *)
 let spill_instr curr_offset env = function
-| BinOp(bop, op, Imm(int_val)) ->
-  let value = string_of_int int_val in
-  bop_mem_imm bop op value curr_offset env
+(* special case since rax is a register but stored in treg which is treated as mem here *)
+| BinOp(Mov, TReg(_, "rax"), Imm(int_val)) -> 
+  let str_val = string_of_int int_val in
+  let rax_str = sprintf "\t%s\t%s, %s" ("mov") ("rax") str_val in
+  (rax_str, curr_offset, env)
 (* special case since rax is a register but stored in treg which is treated as mem here *)
 | BinOp(Mov, TReg(_, "rax"), op) -> 
   let (offset_op, curr_offset1, env1) = 
     offsets_from_env curr_offset env op in
   let rax_str = sprintf "\t%s\t%s, %s" "mov" "rax" (on_stack offset_op) in
   (rax_str, curr_offset1, env1)
+| BinOp(bop, op, Imm(int_val)) ->
+  let value = string_of_int int_val in
+  bop_mem_imm bop op value curr_offset env
 | BinOp(bop, op1, op2) ->
   bop_mem_mem bop op1 op2 curr_offset env 
 
