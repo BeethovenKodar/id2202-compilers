@@ -52,7 +52,7 @@ let () =
       if (!pprint_ir = true) then
         Pprint_ir.p_ir_func ir;
       if (!pprint_asm = true) then
-        let () = Pprint_asm.p_block block_list in
+        (* let () = Pprint_asm.p_block block_list in *)
         Spilling.spill block_list;);
     work tl in
     let () = work !input_files in

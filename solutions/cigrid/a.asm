@@ -1,6 +1,3 @@
-
-mov	rax,	42
-ret
 	global  main
 
 	section .text
