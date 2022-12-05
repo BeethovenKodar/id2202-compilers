@@ -46,12 +46,15 @@ let () =
       in
       let ir = Ast_to_ir.convert ast_globals in
       let block_list = Instr_select.convert ir in
+     
       (if (!pprint_ast = true) then
         Pprint_ast.p_prog ast_globals;
       if (!pprint_ir = true) then
         Pprint_ir.p_ir_func ir;
       if (!pprint_asm = true) then
-        Pprint_asm.p_block block_list;);
+        let () = Pprint_asm.p_block block_list in
+        let () = print_endline "\n\n" in
+        Spilling.spill block_list;);
     work tl in
     let () = work !input_files in
     exit 0

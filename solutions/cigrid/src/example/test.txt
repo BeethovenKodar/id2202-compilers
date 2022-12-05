@@ -3,3 +3,37 @@ int main(){
   x = x + 4;
   return x;
 }
+
+
+mov     qword [rsp], 1
+
+mov     r10, qword [rsp]
+mov     qword [rsp + 8], r10
+mov     qword [rsp + 16], 4
+mov     r10, qword [rsp + 8]
+mov     qword [rsp], r10
+mov     r10, qword [rsp + 16]
+add     qword [rsp], r10
+
+
+mov     qword [rsp], 1
+mov     r10, qword [rsp + 8]
+mov     qword [rsp], r10
+mov     qword [rsp + 16], 4
+mov     r10, qword [rsp]
+mov     qword [rsp + 8], r10
+mov     r10, qword [rsp]
+add     qword [rsp + 16], r10
+mov     r10, qword [rsp + 24]
+mov     qword [rsp], r10
+
+mov     qword [rsp], 1
+mov     r10, qword [rsp + 8]
+mov     qword [rsp], r10
+mov     qword [rsp + 16], 4
+mov     r10, qword [rsp + 8]
+mov     qword [rsp], r10
+mov     r10, qword [rsp + 16]
+add     qword [rsp], r10
+mov     r10, qword [rsp + 24]
+mov     qword [rsp], r10
